@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class SensorService {
-    private sensorsUrl = 'http://130.206.121.247:5000/flasklistener';
+    private sensorsUrl = 'api/sensors';
     private headers = new Headers({'Content-Type':
 'application/json'});
 
