@@ -8,17 +8,23 @@ import { InMemoryDataService }  from './in-memory-data.service';
 
 import { AppComponent }  from './app.component';
 import { SensorsComponent } from './sensors.component';
+import { SensorDetailComponent} from './sensor-detail.component';
+
 import { SensorService } from './sensor.service';
+
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports:      [ 
     BrowserModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
+    AppRoutingModule
   ],
   declarations: [ 
     AppComponent,
-    SensorsComponent
+    SensorsComponent,
+    SensorDetailComponent
   ],
   providers: [
     SensorService

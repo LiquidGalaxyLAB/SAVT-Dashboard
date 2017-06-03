@@ -24,4 +24,12 @@ export class SensorService {
         console.error('ERROR', error);
         return Promise.reject(error.message || error);
     }
+
+    getSensor(name: string): Promise<Sensor> {
+        const url = `${this.sensorsUrl}/${name}`;
+        return this.http.get(url)
+    .toPromise()
+    .then(response => response.json().data as Sensor)
+    .catch(this.handleError);
+    } 
 }
