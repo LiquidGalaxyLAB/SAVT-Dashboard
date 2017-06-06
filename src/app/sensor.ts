@@ -1,7 +1,8 @@
 export class Sensor {
-    id: number;
+    _id: string;
     name: string;
     location: number[];
-    temperature: number;
-    humidity: number;
+    temperatureValue: number;
+    humidityValue: number;
+    update_at: string;
 }

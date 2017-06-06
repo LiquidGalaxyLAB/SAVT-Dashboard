@@ -12,6 +12,7 @@ import { SensorService } from './sensor.service';
 
 export class SensorsComponent implements OnInit {
     sensors: Sensor[];
+    errorMessage: string;
 
     constructor(private sensorService: SensorService,
         private router: Router) { }
@@ -22,11 +23,14 @@ export class SensorsComponent implements OnInit {
 
     getSensors(): void {
         this.sensorService.getSensors()
-    .then(sensors => this.sensors = sensors);
+    .subscribe(
+        sensors => this.sensors = sensors,
+        error => this.errorMessage = <any>error
+        );
     }
 
     goToDetail(sensor: Sensor): void {
-        this.router.navigate(['/sensor', sensor.id]);
+        this.router.navigate(['/sensor', sensor.name]);
     }
 
 }
