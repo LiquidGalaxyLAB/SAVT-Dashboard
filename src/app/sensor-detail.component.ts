@@ -13,6 +13,7 @@ import 'rxjs/add/operator/switchMap';
 
 export class SensorDetailComponent implements OnInit {
     @Input() sensor: Sensor;
+    errorMessage: string;
 
     constructor(
         private sensorService: SensorService,
@@ -28,7 +29,7 @@ export class SensorDetailComponent implements OnInit {
     .switchMap((params: Params) =>
             this.sensorService.getSensor(params['name']))
     .subscribe(
-            sensor => this.sensor = sensor
+            sensor => this.sensor = sensor,
             error => this.errorMessage = <any>error
             );
      }
