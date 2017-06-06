@@ -20,9 +20,16 @@ export class SensorDetailComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        /*this.route.params
-            .switchMap((params: Params) =>
-            this.sensorService.getSensor(params['id']))
-            .subscribe(sensor => this.sensor = sensor);*/
+        this.getSensor();
+     }
+
+     getSensor(): void {
+        this.route.params
+    .switchMap((params: Params) =>
+            this.sensorService.getSensor(params['name']))
+    .subscribe(
+            sensor => this.sensor = sensor
+            error => this.errorMessage = <any>error
+            );
      }
 }

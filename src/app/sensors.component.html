@@ -3,14 +3,6 @@
         <li *ngFor="let sensor of sensors"
     [class.selected]="sensor === selectedSensor"
     (click)="goToDetail(sensor)">
-            <span>Name: {{sensor.name}}</span>
-            <br>
-            <span>Id: {{sensor._id}}</span>
-            <br>
-            <span>Location: {{sensor.location}}</span>
-            <br>
-            <span>Temperature: {{sensor.temperatureValue}}</span>
-            <br>
-            <span>Humidity: {{sensor.humidityValue}}</span>
+            <span>Name: <b>{{sensor.name}}</b></span>
         </li>
     </ul>
