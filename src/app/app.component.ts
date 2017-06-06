@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'my-app',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent  { 
   title = 'SAVT Dashboard'; 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  goToDetail(): void {
+        this.router.navigate(['/']);
+    }
 }
