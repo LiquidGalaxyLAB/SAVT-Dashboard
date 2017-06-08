@@ -22,11 +22,11 @@ import { ToolbarModule } from '../../modules/toolbar/toolbar.module';
     FormsModule,
     HttpModule,
     JsonpModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    AppRoutingModule,
     MyMaterialModule,
-    ToolbarModule
+    ToolbarModule,
   ],
   declarations: [ 
     AppComponent,

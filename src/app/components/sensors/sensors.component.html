@@ -3,6 +3,6 @@
         <md-nav-list *ngFor="let sensor of sensors"
     [class.selected]="sensor === selectedSensor"
     (click)="goToDetail(sensor)">
-            <md-list-item>Name: <b>{{sensor.name}}</b></md-list-item>
+            <md-list-item><b>{{sensor.name}}</b></md-list-item>
         </md-nav-list>
     </ul>
