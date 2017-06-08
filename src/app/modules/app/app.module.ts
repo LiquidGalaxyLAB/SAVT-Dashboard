@@ -5,13 +5,13 @@ import { HttpModule } from '@angular/http';
 import { JsonpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent }  from './app.component';
-import { SensorsComponent } from './sensors.component';
-import { SensorDetailComponent} from './sensor-detail.component';
+import { AppComponent }  from '../../components/app/app.component';
+import { SensorsComponent } from '../../components/sensors/sensors.component';
+import { SensorDetailComponent} from '../../components/sensor-detail/sensor-detail.component';
 
-import { SensorService } from './sensor.service';
+import { SensorService } from '../../services/sensor/sensor.service';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from '../../modules/app-routing/app-routing.module';
 
 @NgModule({
   imports:      [ 

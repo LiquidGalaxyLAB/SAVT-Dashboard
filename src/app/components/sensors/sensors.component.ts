@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Sensor } from './sensor';
-import { SensorService } from './sensor.service';
+import { Sensor } from '../../classes/sensor/sensor';
+import { SensorService } from '../../services/sensor/sensor.service';
 
 import { Observable } from 'rxjs/Rx';
 import { AnonymousSubscription } from 'rxjs/Subscription';

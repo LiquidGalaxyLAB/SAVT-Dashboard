@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Headers, Http, Response } from '@angular/http';
 
-import { Sensor } from './sensor';
+import { Sensor } from '../../classes/sensor/sensor';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
