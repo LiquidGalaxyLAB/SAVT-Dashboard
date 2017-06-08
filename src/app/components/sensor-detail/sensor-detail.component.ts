@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {ActivatedRoute, Params } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/Rx';
 
-import { Sensor } from '../../classes/sensor/sensor';
+import { Sensor } from '../../models/sensor/sensor';
 import { SensorService } from '../../services/sensor/sensor.service';
 
 import 'rxjs/add/operator/switchMap';
