@@ -1,10 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ActivatedRoute, Params } from '@angular/router';
+import { BehaviorSubject } from 'rxjs/Rx';
 
 import { Sensor } from './sensor';
 import { SensorService } from './sensor.service';
 
 import 'rxjs/add/operator/switchMap';
+
+import * as io from 'socket.io-client';
 
 @Component({
     selector: 'sensor-detail',
@@ -14,6 +17,8 @@ import 'rxjs/add/operator/switchMap';
 export class SensorDetailComponent implements OnInit {
     @Input() sensor: Sensor;
     errorMessage: string;
+    socket: any = null;
+    x = new BehaviorSubject(null);
 
     constructor(
         private sensorService: SensorService,
@@ -22,6 +27,15 @@ export class SensorDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.getSensor();
+        this.socket = io('http://localhost:4000');
+        this.socket.on('updated', function(sensorName: string) {
+            console.log(sensorName);
+            // x.next(sensorName)
+        });
+        /* x.subscribe((value) => {
+            // VALUE ES LO QUE EM RETORNARA NEX. FER SOCKETS A UN SERVEI A PART I SUBSCRIUREM A AQUELL SERVEI A CADA COMPONENT QUE EL NECESSITI
+        })*/
+        
      }
 
      getSensor(): void {

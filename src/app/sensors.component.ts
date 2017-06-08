@@ -36,7 +36,7 @@ export class SensorsComponent implements OnInit {
     }
 
     private subscribeToData(): void {
-        this.timerSubscription=Observable.timer(5000)  
+        this.timerSubscription=Observable.timer(60000)  
     .subscribe(()=>this.refreshData()); 
     }
 
