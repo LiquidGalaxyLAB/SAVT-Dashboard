@@ -14,7 +14,6 @@ import { SensorService } from '../../services/sensor/sensor.service';
 import { AppRoutingModule } from '../../modules/app-routing/app-routing.module';
 import { MaterialModule } from '@angular/material';
 import { MyMaterialModule} from '../../modules/my-material/my-material.module';
-import { ToolbarModule } from '../../modules/toolbar/toolbar.module';
 
 @NgModule({
   imports:      [ 
@@ -25,8 +24,7 @@ import { ToolbarModule } from '../../modules/toolbar/toolbar.module';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    MyMaterialModule,
-    ToolbarModule,
+    MyMaterialModule
   ],
   declarations: [ 
     AppComponent,

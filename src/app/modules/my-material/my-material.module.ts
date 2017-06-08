@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { MdListModule } from '@angular/material';
-import { MdToolbarModule } from '@angular/material';
+import { ToolbarModule } from '../../modules/toolbar/toolbar.module';
 
 @NgModule({
     imports: [
         MdListModule,
-        MdToolbarModule
+        ToolbarModule
         ],
     exports: [
         MdListModule,
-        MdToolbarModule
+        ToolbarModule
         ],
     providers: [],
 })
