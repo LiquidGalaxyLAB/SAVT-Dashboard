@@ -1,8 +1,8 @@
 <h2>Sensors</h2>
     <ul class="sensors">
-        <li *ngFor="let sensor of sensors"
+        <md-list *ngFor="let sensor of sensors"
     [class.selected]="sensor === selectedSensor"
     (click)="goToDetail(sensor)">
-            <span>Name: <b>{{sensor.name}}</b></span>
-        </li>
+            <md-list-item>Name: <b>{{sensor.name}}</b></md-list-item>
+        </md-list>
     </ul>

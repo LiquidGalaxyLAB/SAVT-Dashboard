@@ -12,6 +12,7 @@ import { SensorDetailComponent} from '../../components/sensor-detail/sensor-deta
 import { SensorService } from '../../services/sensor/sensor.service';
 
 import { AppRoutingModule } from '../../modules/app-routing/app-routing.module';
+import { MaterialModule } from '../../modules/material/material.module';
 
 @NgModule({
   imports:      [ 
@@ -20,7 +21,8 @@ import { AppRoutingModule } from '../../modules/app-routing/app-routing.module';
     HttpModule,
     JsonpModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   declarations: [ 
     AppComponent,
