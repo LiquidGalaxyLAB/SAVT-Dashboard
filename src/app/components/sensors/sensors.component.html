@@ -1,8 +1,21 @@
 <h2>Sensors</h2>
     <ul class="sensors">
-        <md-nav-list *ngFor="let sensor of sensors"
-    [class.selected]="sensor === selectedSensor"
-    (click)="goToDetail(sensor)">
-            <md-list-item><b>{{sensor.name}}</b></md-list-item>
+        <md-nav-list *ngFor="let sensor of sensors">
+            <md-checkbox>
+                <md-list-item [class.selected]="sensor === selectedSensor"
+            (click)="goToDetail(sensor)">
+                    <b>{{sensor.name}}</b>
+                </md-list-item>
+            </md-checkbox>
         </md-nav-list>
+        <br>
+        <div align="center">
+            <button md-button (click)="generateKml()"
+        color="warn">
+                <b>Generate KML</b>
+            </button>
+        </div>
+        <div align="center" *ngIf="kmlMessage">
+            KML Message
+        </div>
     </ul>

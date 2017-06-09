@@ -1,5 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { MdDialog } from '@angular/material';
+
+import { DialogComponent } from '../../components/dialog/dialog.component';
 
 import { Sensor } from '../../models/sensor/sensor';
 import { SensorService } from '../../services/sensor/sensor.service';
@@ -15,12 +18,14 @@ import { AnonymousSubscription } from 'rxjs/Subscription';
 export class SensorsComponent implements OnInit {
     sensors: Sensor[];
     errorMessage: string;
+    kmlMessage: string;
     
     private timerSubscription: AnonymousSubscription;
     private postsSubscription: AnonymousSubscription;
 
     constructor(private sensorService: SensorService,
-        private router: Router) { }
+        private router: Router,
+        public dialog: MdDialog) { }
 
     ngOnInit() {
         this.refreshData();
@@ -62,5 +67,19 @@ export class SensorsComponent implements OnInit {
     goToDetail(sensor: Sensor): void {
         this.router.navigate(['/sensor', sensor.name]);
     }
+
+    generateKml(): void {
+        this.dialog.open(DialogComponent);
+    }
+
+    /*
+    generateKml(sensorsSelected: [Sensor]): void {
+        this.sensorService.generateKml()
+    .subscribe(
+        message => this.kmlMessage = message,
+        error => this.errorMessage = <any>error
+        );
+    }
+    */
 
 }
