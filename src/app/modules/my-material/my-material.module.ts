@@ -5,6 +5,7 @@ import { MdButtonModule } from '@angular/material';
 
 import { ToolbarModule } from '../../modules/toolbar/toolbar.module';
 import { DialogModule } from '../../modules/dialog/dialog.module';
+import { SidenavModule } from '../../modules/sidenav/sidenav.module';
 
 @NgModule({
     imports: [
@@ -12,14 +13,16 @@ import { DialogModule } from '../../modules/dialog/dialog.module';
         MdCheckboxModule,
         MdButtonModule,
         ToolbarModule,
-        DialogModule
+        DialogModule,
+        SidenavModule
         ],
     exports: [
         MdListModule,
         MdCheckboxModule,
         MdButtonModule,
         ToolbarModule,
-        DialogModule
+        DialogModule,
+        SidenavModule
         ],
     providers: [],
 })
