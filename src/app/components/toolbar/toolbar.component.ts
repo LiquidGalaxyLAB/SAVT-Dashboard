@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'toolbar',
@@ -8,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
 
 export class ToolbarComponent implements OnInit {
     title = 'SAVT Dashboard'; 
-    constructor(
-    ) { }
+    constructor(private router: Router ) { }
 
     ngOnInit() { }
+
+    goToHome(): void {
+        this.router.navigate(['/']);
+    }
 }
