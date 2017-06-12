@@ -5,7 +5,6 @@ import { MdButtonModule } from '@angular/material';
 
 import { ToolbarModule } from '../../modules/toolbar/toolbar.module';
 import { DialogModule } from '../../modules/dialog/dialog.module';
-import { SidenavModule } from '../../modules/sidenav/sidenav.module';
 
 @NgModule({
     imports: [
@@ -14,7 +13,6 @@ import { SidenavModule } from '../../modules/sidenav/sidenav.module';
         MdButtonModule,
         ToolbarModule,
         DialogModule,
-        SidenavModule
         ],
     exports: [
         MdListModule,
@@ -22,7 +20,6 @@ import { SidenavModule } from '../../modules/sidenav/sidenav.module';
         MdButtonModule,
         ToolbarModule,
         DialogModule,
-        SidenavModule
         ],
     providers: [],
 })
