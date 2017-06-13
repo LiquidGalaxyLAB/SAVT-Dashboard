@@ -72,6 +72,12 @@ export class SensorsComponent implements OnInit {
         this.dialog.open(DialogComponent);
     }
 
+    checkboxChange(event, sensor:Sensor): void {
+        const isChecked = event['checked'];
+        console.info(event);
+        console.info(sensor.name);
+    }
+
     /*
     generateKml(sensorsSelected: [Sensor]): void {
         this.sensorService.generateKml()

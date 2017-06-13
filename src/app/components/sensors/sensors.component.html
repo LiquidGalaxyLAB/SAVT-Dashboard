@@ -1,8 +1,8 @@
 <h2>Sensors</h2>
     <ul class="sensors">
         <md-nav-list *ngFor="let sensor of sensors">
-            <md-checkbox>
-                <md-list-item [class.selected]="sensor === selectedSensor"
+            <md-checkbox (change)="checkboxChange($event, sensor)">
+                <md-list-item
             (click)="goToDetail(sensor)">
                     <b>{{sensor.name}}</b>
                 </md-list-item>
