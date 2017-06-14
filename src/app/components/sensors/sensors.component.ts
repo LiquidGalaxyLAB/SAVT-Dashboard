@@ -19,6 +19,7 @@ export class SensorsComponent implements OnInit {
     sensors: Sensor[];
     errorMessage: string;
     kmlMessage: string;
+    checkedSensorsList: Sensor[] = [];
     
     private timerSubscription: AnonymousSubscription;
     private postsSubscription: AnonymousSubscription;
@@ -69,13 +70,26 @@ export class SensorsComponent implements OnInit {
     }
 
     generateKml(): void {
-        this.dialog.open(DialogComponent);
+        let dialogRef = this.dialog.open(DialogComponent);
+        dialogRef.afterClosed().subscribe(response => {
+            if (response === 'yes') {
+                // Generate KML
+                console.info(response + this.checkedSensorsList);
+            }
+        });
     }
 
-    checkboxChange(event, sensor:Sensor): void {
+    checkboxChange(event: Event, sensor:Sensor): void {
+        //'event' parameter has to determinate a type. Look in material.io library
         const isChecked = event['checked'];
-        console.info(event);
-        console.info(sensor.name);
+        if (isChecked) {
+            this.checkedSensorsList.push(sensor);
+        }
+        else {
+            var index = this.checkedSensorsList.indexOf(sensor);
+            this.checkedSensorsList.splice(index, 1);
+        }
+        console.info(this.checkedSensorsList);
     }
 
     /*
