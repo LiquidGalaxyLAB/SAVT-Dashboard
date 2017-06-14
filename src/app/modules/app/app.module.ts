@@ -12,7 +12,7 @@ import { SensorDetailComponent} from '../../components/sensor-detail/sensor-deta
 import { SensorService } from '../../services/sensor/sensor.service';
 
 import { AppRoutingModule } from '../../modules/app-routing/app-routing.module';
-import { MaterialModule } from '@angular/material';
+//import { MaterialModule } from '@angular/material';
 import { MyMaterialModule} from '../../modules/my-material/my-material.module';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { MyMaterialModule} from '../../modules/my-material/my-material.module';
     HttpModule,
     JsonpModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    //MaterialModule,
     AppRoutingModule,
     MyMaterialModule
   ],
