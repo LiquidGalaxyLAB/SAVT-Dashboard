@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 
 import { Sensor } from '../../models/sensor/sensor';
 
@@ -13,6 +13,7 @@ export class SensorService {
     private sensorsUrl = 'http://localhost:3000/sensors';
     private headers = new Headers({'Content-Type':
 'application/json'});
+    private options = new RequestOptions({ headers: this.headers });
 
     constructor(private http: Http) { }
 
@@ -29,16 +30,44 @@ export class SensorService {
     .catch(this.handleError);
     } 
 
+    generateKmlSensors(sensors: Sensor[]): Observable<Response> {
+        const url = `${this.sensorsUrl}/kml/generateKml`;
+        const jsonBody = this.createBodyKml(sensors);
+        console.log(jsonBody);
+        return this.http.post(url, jsonBody, this.options)
+    .map(this.extractSensorsData)
+    .catch(this.handleError);
+    }
+    
     private extractSensorsData(res: Response) {
         let body = res.json();
-        console.log(body);
         return body || { };
     }
 
     private extractSensorData(res: Response) {
         let body = res.json();
-        console.log(body[0]);
         return body[0] || { };
+    }
+
+    private createBodyKml(sensors: Sensor[]): string {
+        var jsonAux = {
+            "name": "SensorsListKml",
+            "sensors": <any>[]
+        };
+        sensors.forEach(sensor => {
+            var sensorJson = {
+                "name": sensor.name,
+                "data": {
+                    "temperature": sensor.temperatureValue
+                },
+                "coords": {
+                    "lat": sensor.location[0],
+                    "lng": sensor.location[1]
+                }
+            };
+            jsonAux.sensors.push(sensorJson)
+        });
+        return JSON.stringify(jsonAux);
     }
 
       private handleError (error: Response | any) {

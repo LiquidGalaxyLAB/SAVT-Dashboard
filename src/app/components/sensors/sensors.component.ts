@@ -74,7 +74,11 @@ export class SensorsComponent implements OnInit {
         dialogRef.afterClosed().subscribe(response => {
             if (response === 'yes') {
                 // Generate KML
-                console.info(response + this.checkedSensorsList);
+                this.sensorService.generateKmlSensors(this.checkedSensorsList)
+            .subscribe(
+                response => console.info('HOLA'+ ' ' + response),
+                error => this.errorMessage = <any>error
+                );
             }
         });
     }
@@ -89,7 +93,6 @@ export class SensorsComponent implements OnInit {
             var index = this.checkedSensorsList.indexOf(sensor);
             this.checkedSensorsList.splice(index, 1);
         }
-        console.info(this.checkedSensorsList);
     }
 
     /*
