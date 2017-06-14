@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class ToolbarComponent implements OnInit {
-    title = 'SAVT Dashboard'; 
+    title = 'Smart Agro Visualization Tool'; 
     constructor(private router: Router ) { }
 
     ngOnInit() { }
