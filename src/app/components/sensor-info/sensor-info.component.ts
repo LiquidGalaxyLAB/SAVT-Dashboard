@@ -5,7 +5,7 @@ import { Sensor } from '../../models/sensor/sensor';
 
 @Component({
   selector: 'sensor-info',
-  templateUrl: './sensor-info.component.html'; 
+  templateUrl: './sensor-info.component.html' 
 })
 export class SensorInfoComponent {
     @Input() sensor: Sensor;
