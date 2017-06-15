@@ -7,8 +7,8 @@ import { MdDialogRef } from '@angular/material';
 })
 
 export class DialogComponent implements OnInit {
-    title = 'Generate KML'
-    message = 'Are you sure to generate this KML ?'
+    title = 'Generate KML';
+    message = 'Are you sure to generate this KML ?';
     constructor(public dialogRef: MdDialogRef<DialogComponent>) { }
 
     ngOnInit() { }

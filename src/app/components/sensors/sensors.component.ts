@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
+import { MdSnackBar } from '@angular/material';
 
 import { DialogComponent } from '../../components/dialog/dialog.component';
 
@@ -26,7 +27,8 @@ export class SensorsComponent implements OnInit {
 
     constructor(private sensorService: SensorService,
         private router: Router,
-        public dialog: MdDialog) { }
+        public dialog: MdDialog,
+        public snackbar: MdSnackBar) { }
 
     ngOnInit() {
         this.refreshData();
@@ -76,7 +78,18 @@ export class SensorsComponent implements OnInit {
                 // Generate KML
                 this.sensorService.generateKmlSensors(this.checkedSensorsList)
             .subscribe(
-                response => console.info('HOLA'+ ' ' + response),
+                response => {
+                    if (response.toString() === 'OK'){
+                        this.snackbar.open('KML Generated !', 'OK', {
+                            duration: 2000
+                        });
+                    }
+                    else if (response.toString() === 'ERROR'){
+                        this.snackbar.open('There was an error generating the KML file :(', 'OK', {
+                            duration: 2000
+                        });
+                    }
+                },
                 error => this.errorMessage = <any>error
                 );
             }
