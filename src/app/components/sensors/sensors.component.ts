@@ -54,6 +54,9 @@ export class SensorsComponent implements OnInit {
         sensors => {
             this.sensors = sensors;
             this.subscribeToData();
+            this.snackbar.open('Sensors list UPDATED', 'OK', {
+                duration: 500
+            });
         },
         error => this.errorMessage = <any>error
         );
@@ -72,7 +75,13 @@ export class SensorsComponent implements OnInit {
     }
 
     generateKml(): void {
-        let dialogRef = this.dialog.open(DialogComponent);
+        if (this.checkedSensorsList.length === 0){
+            this.snackbar.open('Hey ! You must select some sensor to generate a KML.', 'OK', {
+                duration: 3000
+            });
+        }
+        else {
+            let dialogRef = this.dialog.open(DialogComponent);
         dialogRef.afterClosed().subscribe(response => {
             if (response === 'yes') {
                 // Generate KML
@@ -94,6 +103,7 @@ export class SensorsComponent implements OnInit {
                 );
             }
         });
+        }
     }
 
     checkboxChange(event: Event, sensor:Sensor): void {
