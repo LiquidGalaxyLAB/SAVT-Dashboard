@@ -1,18 +1,20 @@
 <md-toolbar color="accent">KML Generation Page</md-toolbar>
     <ul class="sensors">
-        <md-nav-list *ngFor="let sensor of sensors">
+        <md-nav-list *ngFor="let sensor of sensors"
+         [class.selected]="sensor === selectedSensor"
+         (click)="onSelect(sensor)">
             <md-checkbox (change)="checkboxChange($event, sensor)">
-                <md-list-item
-            (click)="goToDetail(sensor)">
+                <md-list-item>
                     <b>{{sensor.name}}</b>
                 </md-list-item>
             </md-checkbox>
         </md-nav-list>
-        <br>
-        <div align="center">
-            <button md-raised-button (click)="generateKml()"
-        color="primary">
-                <b>Generate KML</b>
-            </button>
-        </div>
     </ul>
+    <sensor-info [sensor]="selectedSensor"></sensor-info>
+    <br>
+    <div align="center">
+        <button md-raised-button (click)="generateKml()"
+    color="primary">
+            <b>Generate KML</b>
+        </button>
+    </div>
