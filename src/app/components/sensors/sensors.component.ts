@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { MdDialog } from '@angular/material';
 import { MdSnackBar } from '@angular/material';
@@ -17,6 +17,7 @@ import { AnonymousSubscription } from 'rxjs/Subscription';
 })
 
 export class SensorsComponent implements OnInit {
+    @ViewChild('googleMap') googleMap: any;
     sensors: Sensor[];
     selectedSensor: Sensor;
     errorMessage: string;
@@ -35,7 +36,7 @@ export class SensorsComponent implements OnInit {
         this.refreshData();
      }
 
-    public ngOnDestroy(): void {
+    public ngOnDestroy(): void {ElementRef
         if (this.postsSubscription) {
             this.postsSubscription.unsubscribe();
         }
@@ -45,7 +46,7 @@ export class SensorsComponent implements OnInit {
     }
 
     private subscribeToData(): void {
-        this.timerSubscription=Observable.timer(60000)  
+        this.timerSubscription=Observable.timer(600000)  
     .subscribe(()=>this.refreshData()); 
     }
 
@@ -107,9 +108,11 @@ export class SensorsComponent implements OnInit {
         //'event' parameter has to determinate a type. Look in material.io library
         const isChecked = event['checked'];
         if (isChecked) {
+            this.googleMap.addMarker(sensor.name, sensor.location);
             this.checkedSensorsList.push(sensor);
         }
         else {
+            this.googleMap.removeMarker(sensor.name, sensor.location);
             var index = this.checkedSensorsList.indexOf(sensor);
             this.checkedSensorsList.splice(index, 1);
         }
@@ -118,15 +121,5 @@ export class SensorsComponent implements OnInit {
     onSelect(sensor: Sensor): void {
         this.selectedSensor = sensor;
     }
-
-    /*
-    generateKml(sensorsSelected: [Sensor]): void {
-        this.sensorService.generateKml()
-    .subscribe(
-        message => this.kmlMessage = message,
-        error => this.errorMessage = <any>error
-        );
-    }
-    */
 
 }

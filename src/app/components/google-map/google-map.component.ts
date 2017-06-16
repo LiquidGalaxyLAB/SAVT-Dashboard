@@ -9,31 +9,12 @@ import { MouseEvent } from '@agm/core';
 
 export class GoogleMapComponent implements OnInit {
     title="Google Maps API";
-    map_latitude: number = 41.1;
-    map_longitude: number = 0.6;
-    map_zoom: number = 2;
-    map_mapTypeId: string = "hybrid";
+    latitude: number = 0.6;
+    longitude: number = 41.1;
+    zoom: number = 4;
+    mapTypeId: string = "hybrid";
 
-    markers: marker[] = [
-        {
-		  latitude: 51.673858,
-		  longitude: 7.815982,
-		  label: 'A',
-		  draggable: true
-	  },
-	  {
-		  latitude: 51.373858,
-		  longitude: 7.215982,
-		  label: 'B',
-		  draggable: false
-	  },
-	  {
-		  latitude: 51.723858,
-		  longitude: 7.895982,
-		  label: 'C',
-		  draggable: true
-	  }
-    ];
+    markers: marker[] = [];
 
     constructor() { }
 
@@ -41,25 +22,48 @@ export class GoogleMapComponent implements OnInit {
         
     ) { }
 
-    map_mapClicked(event: MouseEvent){
-        console.info(event);
+    mapClicked(event: MouseEvent){
+        /* console.info(event);
         this.markers.push({
             latitude: event.coords.lat,
             longitude: event.coords.lng,
+            draggable: true
+        }); */
+    }
+
+    mapReady(event: any) {
+        //console.log(event);
+    }
+
+    markerClick(marker: marker, event: MouseEvent) {
+        //console.log(`clicked the marker: ${marker.label}`)
+    }
+
+    dragEnd(m: marker, event: MouseEvent) {
+        //console.log('dragEnd' + m + event);
+    }
+
+    cleanMarkers(): void {
+        this.markers.splice(0, this.markers.length);
+    }
+
+    addMarker(name: string, location: number[]): void {
+        this.markers.push({
+            latitude: location[0],
+            longitude:location[1],
+            label: name,
             draggable: false
         });
     }
 
-    map_mapReady(event: any) {
-        console.log(event);
-    }
-
-    marker_markerClick(marker: marker, event: MouseEvent) {
-        console.log(`clicked the marker: ${marker.label}`)
-    }
-
-    markerDragEnd(m: marker, event: MouseEvent) {
-        console.log('dragEnd' + m + event);
+    removeMarker(name: string, location: number[]): void {
+        var index = this.markers.indexOf({
+            latitude: location[0],
+            longitude:location[1],
+            label: name,
+            draggable: false
+        });
+        this.markers.splice(index, 1);
     }
 }
 

@@ -2,7 +2,7 @@
     <ul class="sensors">
         <md-nav-list *ngFor="let sensor of sensors"
          [class.selected]="sensor === selectedSensor">
-         <md-checkbox (change)="checkboxChange($event, sensor)"></md-checkbox>
+         <md-checkbox (change)="checkboxChange($event, sensor);"></md-checkbox>
                 <md-list-item (click)="onSelect(sensor)">
                     <b>{{sensor.name}}</b>
                 </md-list-item>
@@ -16,5 +16,5 @@
             <b>Generate KML</b>
         </button>
     </div>
-    <google-map></google-map>
+    <google-map #googleMap></google-map>
     <bar-chart></bar-chart>

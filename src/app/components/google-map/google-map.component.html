@@ -1,21 +1,28 @@
-<md-toolbar color="primary">{{ title }}</md-toolbar>
+<md-toolbar color="primary" style="display: flex">
+    {{ title }}
+    <div style="flex: auto; text-align: right">
+        <button md-mini-fab (click)="cleanMarkers()" color="warn">
+            <md-icon>clear</md-icon>
+        </button>
+    </div>
+</md-toolbar>
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
 <agm-map 
-    [latitude]="map_latitude" 
-    [longitude]="map_longitude"
-    [zoom]="map_zoom"
-    [mapTypeId]="map_mapTypeId"
-    (mapReady)="map_mapReady($event)"
-    (mapClick)="map_mapClicked($event)">
+    [latitude]="latitude" 
+    [longitude]="longitude"
+    [zoom]="zoom"
+    [mapTypeId]="mapTypeId"
+    (mapReady)="mapReady($event)"
+    (mapClick)="mapClicked($event)">
     <agm-marker
         *ngFor= "let marker of markers"
-        (markerClick)="marker_markerClick(marker, $event)" 
+        (markerClick)="markerClick(marker, $event)" 
         [latitude]="marker.latitude" 
         [longitude]="marker.longitude"
         [label]="marker.label"
         [markerDraggable]="marker.draggable"
-        (dragEnd)="marker_dragEnd(marker, $event)">
+        (dragEnd)="dragEnd(marker, $event)">
     </agm-marker>
 </agm-map>
