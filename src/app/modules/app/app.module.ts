@@ -14,12 +14,12 @@ import { SensorsComponent } from '../../components/sensors/sensors.component';
 import { SensorInfoComponent } from '../../components/sensor-info/sensor-info.component';
 import { SensorDetailComponent} from '../../components/sensor-detail/sensor-detail.component';
 import { BarChartComponent } from '../../components/bar-chart/bar-chart.component';
-import { GoogleMapComponent } from '../../components/google-map/google-map.component';
 
 import { SensorService } from '../../services/sensor/sensor.service';
 
 import { AppRoutingModule } from '../../modules/app-routing/app-routing.module';
 import { MyMaterialModule} from '../../modules/my-material/my-material.module';
+import { GoogleMapModule } from '../../modules/google-map/google-map.module';
 
 @NgModule({
   imports:      [ 
@@ -34,7 +34,8 @@ import { MyMaterialModule} from '../../modules/my-material/my-material.module';
     }),
     MaterialModule,
     AppRoutingModule,
-    MyMaterialModule
+    MyMaterialModule,
+    GoogleMapModule
   ],
   declarations: [ 
     AppComponent,
@@ -42,7 +43,6 @@ import { MyMaterialModule} from '../../modules/my-material/my-material.module';
     SensorInfoComponent,
     SensorDetailComponent,
     BarChartComponent,
-    GoogleMapComponent
   ],
   providers: [
     SensorService

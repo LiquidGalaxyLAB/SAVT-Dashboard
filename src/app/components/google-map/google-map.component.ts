@@ -9,8 +9,10 @@ import { MouseEvent } from '@agm/core';
 
 export class GoogleMapComponent implements OnInit {
     title="Google Maps API";
-    @Input() latitude: number;
-    @Input() longitude: number;
+    map_latitude: number = 41.1;
+    map_longitude: number = 0.6;
+    map_zoom: number = 2;
+    map_mapTypeId: string = "hybrid";
     constructor() { }
 
     ngOnInit(
