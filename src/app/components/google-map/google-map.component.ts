@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MouseEvent } from '@agm/core';
 
 @Component({
@@ -15,6 +15,8 @@ export class GoogleMapComponent implements OnInit {
     mapTypeId: string = "hybrid";
 
     markers: marker[] = [];
+
+    @Output() onClean = new EventEmitter<boolean>();
 
     constructor() { }
 
@@ -44,6 +46,8 @@ export class GoogleMapComponent implements OnInit {
     }
 
     cleanMarkers(): void {
+        const clean = true;
+        this.onClean.emit(clean);
         this.markers.splice(0, this.markers.length);
     }
 

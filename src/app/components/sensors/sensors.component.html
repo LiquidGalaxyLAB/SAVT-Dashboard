@@ -16,5 +16,5 @@
             <b>Generate KML</b>
         </button>
     </div>
-    <google-map #googleMap></google-map>
+    <google-map #googleMap (onClean)="onClean($event)"></google-map>
     <bar-chart></bar-chart>

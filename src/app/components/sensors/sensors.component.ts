@@ -18,6 +18,7 @@ import { AnonymousSubscription } from 'rxjs/Subscription';
 
 export class SensorsComponent implements OnInit {
     @ViewChild('googleMap') googleMap: any;
+    // googleMap has to be defined by a eventEmitter / SOMETHING (not any)
     sensors: Sensor[];
     selectedSensor: Sensor;
     errorMessage: string;
@@ -115,7 +116,13 @@ export class SensorsComponent implements OnInit {
             this.googleMap.removeMarker(sensor.name, sensor.location);
             var index = this.checkedSensorsList.indexOf(sensor);
             this.checkedSensorsList.splice(index, 1);
+            console.log(this.checkedSensorsList);
         }
+    }
+
+    onClean(clean: boolean): void {
+        this.checkedSensorsList.splice(0, this.checkedSensorsList.length);
+        console.log(this.checkedSensorsList);
     }
 
     onSelect(sensor: Sensor): void {
