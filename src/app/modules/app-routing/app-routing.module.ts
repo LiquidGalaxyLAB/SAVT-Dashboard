@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SensorsComponent } from '../../components/sensors/sensors.component';
 import { SensorDetailComponent } from '../../components/sensor-detail/sensor-detail.component';
+import { GraphsPageComponent } from '../../components/graphs-page/graphs-page.component';
 
 const routes: Routes = [
     {
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
         path: 'sensor/:name',
         component: SensorDetailComponent
+    },
+    {
+        path: 'graphs',
+        component: GraphsPageComponent
     }
 ]
 

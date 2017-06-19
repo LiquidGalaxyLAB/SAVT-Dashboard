@@ -5,7 +5,6 @@
         </button>
     </div>
 </md-toolbar>
-<div class="page-dist">
     <div class="sensors-first-row">
         <div class="sensors-col">
             <ul class="sensors">
@@ -22,8 +21,14 @@
         </div>
     </div>
     <div class="sensors-second-row">
-        <div class="bar-chart">
-            <bar-chart></bar-chart>
+        <div class="menu-col">
+                <button md-button [mdMenuTriggerFor]="menu">Choose a type</button>
+                <md-menu #menu="mdMenu">
+                    <button md-menu-item>Temperature</button>
+                    <button md-menu-item>Humidity</button>
+                </md-menu>
+        </div>
+        <div class="chart-col">
+                <bar-chart></bar-chart>
         </div>
     </div>
-</div>

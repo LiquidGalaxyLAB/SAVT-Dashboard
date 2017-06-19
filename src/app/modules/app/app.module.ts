@@ -14,6 +14,7 @@ import { SensorsComponent } from '../../components/sensors/sensors.component';
 import { SensorInfoComponent } from '../../components/sensor-info/sensor-info.component';
 import { SensorDetailComponent} from '../../components/sensor-detail/sensor-detail.component';
 import { BarChartComponent } from '../../components/bar-chart/bar-chart.component';
+import { GraphsPageComponent } from '../../components/graphs-page/graphs-page.component';
 
 import { SensorService } from '../../services/sensor/sensor.service';
 
@@ -43,6 +44,7 @@ import { GoogleMapModule } from '../../modules/google-map/google-map.module';
     SensorInfoComponent,
     SensorDetailComponent,
     BarChartComponent,
+    GraphsPageComponent
   ],
   providers: [
     SensorService

@@ -1,0 +1,17 @@
+.flex-container {
+    display: flex;
+    align-items: stretch;
+    width: auto;
+    height: auto;
+    background-color: lightgrey;
+}
+
+.flex-item-left {
+    background-color: cornflowerblue;
+    flex-grow: 1
+}
+
+.flex-item-right {
+    background-color: cornflowerblue;
+    flex-grow: 5
+}
