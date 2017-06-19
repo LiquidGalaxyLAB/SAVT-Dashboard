@@ -1,0 +1,64 @@
+.generate-button {
+    flex: auto; text-align: right;
+}
+
+.page-dist {
+    display: flex;
+    flex-direction: column;
+}
+
+.sensors-first-row {
+    flex: auto;
+    flex-grow: 3;
+
+    display: flex;
+    padding-bottom: 1em;
+}
+
+.sensors-col {
+    flex: 1;
+    flex-grow: 1;
+    
+    height: 464px;
+
+    overflow-y:scroll;
+}
+
+.map-col {
+    flex: auto;
+    flex-grow: 3;
+
+    text-align: right;
+    height: auto;
+}
+
+.sensors-list {
+    display: flex;
+}
+
+.sensor-checkbox {
+    flex: auto;
+    align-self: center;
+    text-align: left;
+}
+
+.sensor-item {
+    flex: auto;
+
+    text-align: right;
+}
+
+.sensors-second-row {
+    flex: 1;
+    flex-grow: 1;
+    display: flex;
+
+    height: auto;
+}
+
+.bar-chart {
+    flex: 1; 
+    text-align: center;
+
+    height: 200px;
+}

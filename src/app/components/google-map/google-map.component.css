@@ -1,3 +1,11 @@
 agm-map {
-  height: 300px;
+  height: 400px;
+}
+
+.map-toolbar {
+  display: flex;
+}
+
+.map-toolbar-right {
+  flex: auto; text-align: right
 }

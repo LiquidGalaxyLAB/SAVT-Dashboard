@@ -1,20 +1,29 @@
-<md-toolbar color="accent">KML Generation Page</md-toolbar>
-    <ul class="sensors">
-        <md-nav-list *ngFor="let sensor of sensors"
-         [class.selected]="sensor === selectedSensor">
-         <md-checkbox (change)="checkboxChange($event, sensor);"></md-checkbox>
-                <md-list-item (click)="onSelect(sensor)">
-                    <b>{{sensor.name}}</b>
-                </md-list-item>
-        </md-nav-list>
-    </ul>
-    <sensor-info [sensor]="selectedSensor"></sensor-info>
-    <br>
-    <div align="center">
-        <button md-raised-button (click)="generateKml()"
-    color="primary">
+<md-toolbar color="accent">KML Generation Page
+    <div class="generate-button">
+        <button md-raised-button (click)="generateKml()" color="primary">
             <b>Generate KML</b>
         </button>
     </div>
-    <google-map #googleMap (onClean)="onClean($event)"></google-map>
-    <bar-chart></bar-chart>
+</md-toolbar>
+<div class="page-dist">
+    <div class="sensors-first-row">
+        <div class="sensors-col">
+            <ul class="sensors">
+                <md-nav-list *ngFor="let sensor of sensors" class="sensors-list">
+                <md-checkbox class="sensor-checkbox" (change)="checkboxChange($event, sensor);"></md-checkbox>
+                        <md-list-item class="sensor-item" (click)="goToDetail(sensor)">
+                            <b>{{sensor.name}}</b>
+                        </md-list-item>
+                </md-nav-list>
+            </ul>
+        </div>
+        <div class="map-col">
+            <google-map #googleMap (onClean)="onClean($event)"></google-map>
+        </div>
+    </div>
+    <div class="sensors-second-row">
+        <div class="bar-chart">
+            <bar-chart></bar-chart>
+        </div>
+    </div>
+</div>

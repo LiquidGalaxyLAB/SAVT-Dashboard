@@ -13,14 +13,14 @@ import { AnonymousSubscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'sensors',
-    templateUrl: './sensors.component.html'
+    templateUrl: './sensors.component.html',
+    styleUrls: ['./sensors.component.css']
 })
 
 export class SensorsComponent implements OnInit {
     @ViewChild('googleMap') googleMap: any;
     // googleMap has to be defined by a eventEmitter / SOMETHING (not any)
     sensors: Sensor[];
-    selectedSensor: Sensor;
     errorMessage: string;
     kmlMessage: string;
     checkedSensorsList: Sensor[] = [];
@@ -73,6 +73,10 @@ export class SensorsComponent implements OnInit {
         );
     }
 
+    goToDetail(sensor: Sensor): void {
+        this.router.navigate(['/sensor', sensor.name]);
+    }
+
     generateKml(): void {
         if (this.checkedSensorsList.length === 0){
             this.snackbar.open('Hey ! You must select some sensor to generate a KML.', 'OK', {
@@ -123,10 +127,6 @@ export class SensorsComponent implements OnInit {
     onClean(clean: boolean): void {
         this.checkedSensorsList.splice(0, this.checkedSensorsList.length);
         console.log(this.checkedSensorsList);
-    }
-
-    onSelect(sensor: Sensor): void {
-        this.selectedSensor = sensor;
     }
 
 }
