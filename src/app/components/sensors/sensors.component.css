@@ -2,69 +2,44 @@
     flex: auto; text-align: right;
 }
 
-.page-dist {
-    display: flex;
-    flex-direction: column;
-}
-
-.sensors-first-row {
-    flex: auto;
-    flex-grow: 3;
-
+.sensors-first-row-container {
     display: flex;
     padding-bottom: 1em;
 }
 
 .sensors-col {
-    flex: 1;
-    flex-grow: 1;
-    
     height: 464px;
-
-    overflow-y:scroll;
+    flex-grow: auto;
+    overflow-y:auto;
 }
 
 .map-col {
     flex: auto;
-    flex-grow: 3;
-
-    text-align: right;
-    height: auto;
 }
 
 .sensors-list {
     display: flex;
+    padding-right: 1em;
 }
 
 .sensor-checkbox {
     flex: auto;
     align-self: center;
-    text-align: left;
+    padding-right: 0.5em;
 }
 
 .sensor-item {
     flex: auto;
-
     text-align: right;
 }
 
-.sensors-second-row {
-    flex: auto;
-    flex-grow: 1;
-
+.sensors-second-row-container {
     padding-bottom: 1em;
-    display: flex;
-}
-
-.menu-col {
-    flex: auto;
-    width: 30%;
-    text-align: center;
-}
-
-.chart-col {
-    flex: 1;    
     width: auto;
-    text-align: center;
-    display: inline-block;
+    height: auto;
+    display: block;
+}
+
+.secon-row-col {
+    width: auto;
 }

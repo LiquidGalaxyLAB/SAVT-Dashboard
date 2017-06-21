@@ -7,11 +7,33 @@
 }
 
 .flex-item-left {
-    background-color: cornflowerblue;
-    flex-grow: 1
+    background-color: blue;
+    flex-grow: 1; /* flex-grow: auto; */
+    /* width: auto; */
+    flex-basis: 0;
 }
 
 .flex-item-right {
     background-color: cornflowerblue;
-    flex-grow: 5
+    flex-grow: 5;
+}
+
+.flex-container-2 {
+    display: flex;
+    align-items: stretch;
+    width: auto;
+    height: auto;
+    background-color: lightgrey;
+}
+
+.flex-item-left-2 {
+    background-color: pink;
+    flex-grow: 5; /* flex-grow: auto; */
+    /* width: auto; */
+}
+
+.flex-item-right-2 {
+    background-color: palevioletred;
+    flex-grow: 1;
+    flex-basis: 0;
 }

@@ -5,7 +5,7 @@
         </button>
     </div>
 </md-toolbar>
-    <div class="sensors-first-row">
+    <div class="sensors-first-row-container">
         <div class="sensors-col">
             <ul class="sensors">
                 <md-nav-list *ngFor="let sensor of sensors" class="sensors-list">
@@ -17,18 +17,18 @@
             </ul>
         </div>
         <div class="map-col">
-            <google-map #googleMap (onClean)="onClean($event)"></google-map>
+            <google-map #googleMap (onClean)="onClean($event)"></google-map>          
         </div>
     </div>
-    <div class="sensors-second-row">
-        <div class="menu-col">
+    <div class="sensors-second-row-container">
+        <div class="second-row-col">
                 <button md-button [mdMenuTriggerFor]="menu">Choose a type</button>
                 <md-menu #menu="mdMenu">
                     <button md-menu-item>Temperature</button>
                     <button md-menu-item>Humidity</button>
                 </md-menu>
         </div>
-        <div class="chart-col">
-                <bar-chart></bar-chart>
+        <div class="second-row-col">
+            <bar-chart></bar-chart>
         </div>
     </div>
