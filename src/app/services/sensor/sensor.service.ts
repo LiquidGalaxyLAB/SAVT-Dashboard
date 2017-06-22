@@ -28,8 +28,14 @@ export class SensorService {
         return this.http.get(url)
     .map(this.extractSensorData)
     .catch(this.handleError);
-    } 
+    }
 
+/*    getSensorsChart(): Observable<string[]> {
+        return this.http.get(this.sensorsUrl)
+    .map(this.extractSensorsDataName)
+    .catch(this.handleError);
+    }
+*/
     generateKmlSensors(sensors: Sensor[]): Observable<Response> {
         const url = `${this.sensorsUrl}/kml/generateKml`;
         const jsonBody = this.createBodyKml(sensors);
@@ -47,6 +53,11 @@ export class SensorService {
     private extractSensorData(res: Response) {
         let body = res.json();
         return body[0] || { };
+    }
+
+    private extractSensorDataName(res: Response) {
+        let body = res.json();
+        return body || { };
     }
 
     private createBodyKml(sensors: Sensor[]): string {

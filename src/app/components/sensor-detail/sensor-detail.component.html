@@ -1,10 +1,9 @@
 <div *ngIf="sensor">
     <md-toolbar color="accent">{{sensor.name}} Sensor</md-toolbar>
-    <div><label>Id: </label>{{sensor._id}}</div>
-    <br>
-    <div><label>Location: </label>{{sensor.location}}</div>
-    <br>
-    <div><label>Temperature: </label>{{sensor.temperatureValue}}</div>
-    <br>
-    <div><label>Humidity: </label>{{sensor.humidityValue}}</div>
+    <md-grid-list cols="4" rowHeight="2:1" style="padding-top: 3em">
+        <md-grid-tile><div><label><b>Id: </b></label><br>{{sensor._id}}<br><bar-chart></bar-chart></div></md-grid-tile>
+        <md-grid-tile><div><label><b>Location: </b></label><br>{{sensor.location}}<br><bar-chart></bar-chart></div></md-grid-tile>
+        <md-grid-tile><div><label><b>Temperature: </b></label><br>{{sensor.temperatureValue}}<br><bar-chart></bar-chart></div></md-grid-tile>
+        <md-grid-tile><div><label><b>Humidity: </b></label><br>{{sensor.humidityValue}}<br><bar-chart></bar-chart></div></md-grid-tile>
+    </md-grid-list>
 </div>

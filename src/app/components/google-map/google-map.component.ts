@@ -9,9 +9,9 @@ import { MouseEvent } from '@agm/core';
 
 export class GoogleMapComponent implements OnInit {
     title="Google Maps API";
-    latitude: number = 0.6;
-    longitude: number = 41.1;
-    zoom: number = 4;
+    latitude: number = 41.585501;
+    longitude: number = 0.610802;
+    zoom: number = 14;
     mapTypeId: string = "hybrid";
 
     markers: marker[] = [];

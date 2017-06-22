@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Sensor } from '../../models/sensor/sensor';
+import { SensorService } from '../../services/sensor/sensor.service';
+
+import { Observable } from 'rxjs/Rx';
+
 @Component({
     selector: 'bar-chart',
     templateUrl: './bar-chart.component.html'
@@ -7,17 +12,20 @@ import { Component, OnInit } from '@angular/core';
 
 export class BarChartComponent implements OnInit {
     
-    public barChartOptions:any = {
+  sensors: Sensor[];
+  errorMessage: string;
+
+  public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels:string[] = ['SensorApi1', 'SensorApi2', 'SensorApi3', 'SensorApi4', 'SensorApi5', 'SensorApi6', 'SensorApi7', 'SensorApi8', 'SensorApi9', 'SensorApi10', 'SensorApi11', 'SensorApi12', 'SensorApi13'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
  
   public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [40.5, 31.5, 32.5, 33.5, 40.5, 35.5, 28.1, 28.2, 28.1, 28.3, 28.1, 28.1, 28.3], label: 'Temperature'},
+    {data: [30.6, 19.5, 20.5, 21.5, 30.7, 23.5, 23.5, 23.5, 23.5, 23.4, 23.4, 23.4, 23.4], label: 'Humidity'}
   ];
  
   // events
@@ -50,7 +58,35 @@ export class BarChartComponent implements OnInit {
      */
   }
     
-    constructor() { }
+    constructor(
+      private sensorService: SensorService
+    ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+      /*this.initializeLabels();
+      console.log(this.barChartLabels);
+      this.initializeData();
+      console.log(this.barChartData);*/
+
+     }
+
+     initializeLabels(): void {
+       // This will be called on the API (/listMagnitudes)
+       this.barChartLabels.splice(0, this.barChartLabels.length);
+       this.barChartLabels.push('Temperature', 'Humidity');
+     }
+
+     initializeData(): void {
+       this.barChartData.splice(0, this.barChartData.length);
+       this.sensorService.getSensors()
+    .subscribe(
+        sensors => sensors.forEach(element => {
+          let aux = {data: [element.temperatureValue, element.humidityValue],
+          label: element.name};
+          this.barChartData.push(aux);
+        }),
+        error => this.errorMessage = <any>error
+        );
+     }
+
 }
