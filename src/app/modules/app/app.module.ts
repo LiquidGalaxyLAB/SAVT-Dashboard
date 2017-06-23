@@ -17,6 +17,7 @@ import { BarChartComponent } from '../../components/bar-chart/bar-chart.componen
 import { GraphsPageComponent } from '../../components/graphs-page/graphs-page.component';
 
 import { SensorService } from '../../services/sensor/sensor.service';
+import { SidenavService } from '../../services/sidenav/sidenav.service';
 
 import { AppRoutingModule } from '../../modules/app-routing/app-routing.module';
 import { MyMaterialModule} from '../../modules/my-material/my-material.module';
@@ -47,7 +48,8 @@ import { GoogleMapModule } from '../../modules/google-map/google-map.module';
     GraphsPageComponent
   ],
   providers: [
-    SensorService
+    SensorService,
+    SidenavService
   ],
   bootstrap:    [ AppComponent ]
 })

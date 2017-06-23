@@ -19,13 +19,13 @@ export class BarChartComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = ['SensorApi1', 'SensorApi2', 'SensorApi3', 'SensorApi4', 'SensorApi5', 'SensorApi6', 'SensorApi7', 'SensorApi8', 'SensorApi9', 'SensorApi10', 'SensorApi11', 'SensorApi12', 'SensorApi13'];
+  public barChartLabels:string[] = ['SensorApi7', 'SensorApi8', 'SensorApi9', 'SensorApi10', 'SensorApi11', 'SensorApi12', 'SensorApi13'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
  
   public barChartData:any[] = [
-    {data: [40.5, 31.5, 32.5, 33.5, 40.5, 35.5, 28.1, 28.2, 28.1, 28.3, 28.1, 28.1, 28.3], label: 'Temperature'},
-    {data: [30.6, 19.5, 20.5, 21.5, 30.7, 23.5, 23.5, 23.5, 23.5, 23.4, 23.4, 23.4, 23.4], label: 'Humidity'}
+    {data: [28.1, 28.2, 28.1, 28.3, 28.1, 28.1, 28.3], label: 'Temperature'},
+    {data: [23.5, 23.5, 23.5, 23.4, 23.4, 23.4, 23.4], label: 'Humidity'}
   ];
  
   // events
