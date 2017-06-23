@@ -3,7 +3,8 @@ import { MdDialogRef } from '@angular/material';
 
 @Component({
     selector: 'message-dialog',
-    templateUrl: './dialog.component.html'
+    templateUrl: './dialog.component.html',
+    styleUrls: ['./dialog.component.css']
 })
 
 export class DialogComponent implements OnInit {
