@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class SidenavService {
-    private subject = new Subject();
+    private sidenavSubject = new Subject<boolean>();
 
-    observableSubject = this.subject.asObservable();
+    observableSubject$ = this.sidenavSubject.asObservable();
 
     constructor() { }
 
     openSidenav() {
-       this.subject.next();
+       this.sidenavSubject.next(true);
+    }
+
+    closeSidenav() {
+        this.sidenavSubject.next(false);
     }
 }

@@ -13,12 +13,15 @@ export class AppComponent  {
   @ViewChild('sidenav') sidenav: any;
   subscription: Subscription;
 
-  constructor(private sidenavService: SidenavService) { }
+  constructor(private sidenavService: SidenavService) {
+    sidenavService.observableSubject$.subscribe(
+      bool => {
+        if (bool) this.sidenav.open();
+        else this.sidenav.close();
+      }
+    )
+   }
 
-  ngOnInit() {
-    this.subscription = this.sidenavService.observableSubject.subscribe({
-      next: this.sidenav.open()
-    });
-  }
+  ngOnInit() { }
 
 }

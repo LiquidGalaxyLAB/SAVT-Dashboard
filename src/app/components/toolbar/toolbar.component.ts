@@ -10,16 +10,26 @@ import { SidenavService } from '../../services/sidenav/sidenav.service';
 })
 
 export class ToolbarComponent implements OnInit {
-    title = 'Smart Agro Visualization Tool'; 
+    title = 'Smart Agro Visualization Tool';
+    sidenavOpened: boolean;
     constructor(
         private router: Router,
         private sidenavService: SidenavService,
      ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.sidenavOpened = false;
+     }
 
-    openSidenav(): void {
-        this.sidenavService.openSidenav();
+    sidenavButton(): void {
+        if (this.sidenavOpened) {
+            this.sidenavOpened = false;
+            this.sidenavService.closeSidenav();
+        }
+        else {
+            this.sidenavOpened = true;
+            this.sidenavService.openSidenav();
+        }
     }
     
     goToHome(): void {
