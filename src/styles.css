@@ -1,4 +1,7 @@
-@import url("my-theme.css");
+html, body {
+  padding: 0;
+  margin: 0;
+}
 
 h1 {
   color: #369;
