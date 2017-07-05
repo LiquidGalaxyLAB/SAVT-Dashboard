@@ -8,13 +8,14 @@
 }
 
 .sensors-col {
-    height: 464px;
-    flex-grow: auto;
+    height: auto;
+    flex-grow: 1;
     overflow-y:auto;
 }
 
 .map-col {
     flex: auto;
+    flex-grow: 3
 }
 
 .sensors-list {
@@ -35,6 +36,7 @@
 
 .sensors-second-row-container {
     padding-bottom: 1em;
+    padding-left: 1em;
     width: auto;
     height: auto;
     display: block;
@@ -42,4 +44,8 @@
 
 .secon-row-col {
     width: auto;
+}
+
+.ng-hide {
+    display: none;
 }

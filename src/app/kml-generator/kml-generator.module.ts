@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MdToolbarModule, MdListModule, MdCheckboxModule, MdButtonModule, MdMenuModule } from '@angular/material';
+import { MdToolbarModule, MdListModule, MdCheckboxModule, MdButtonModule } from '@angular/material';
 
 import { KmlGeneratorComponent } from './kml-generator.component';
 
@@ -17,7 +17,6 @@ import { SharedModule } from '../shared/shared.module';
         MdListModule,
         MdCheckboxModule,
         MdButtonModule,
-        MdMenuModule,
         KmlGeneratorRoutingModule,
         DialogModule,
         GoogleMapModule,

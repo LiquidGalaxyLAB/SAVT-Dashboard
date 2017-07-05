@@ -21,14 +21,6 @@
         </div>
     </div>
     <div class="sensors-second-row-container">
-        <div class="second-row-col">
-                <button md-button [mdMenuTriggerFor]="menu">Choose a type</button>
-                <md-menu #menu="mdMenu">
-                    <button md-menu-item>Temperature</button>
-                    <button md-menu-item>Humidity</button>
-                </md-menu>
-        </div>
-        <div class="second-row-col">
-            <bar-chart></bar-chart>
-        </div>
+        <input type="file" class="ng-hide" id="input-file-id" multiple />
+        <label for="input-file-id" class="mat-raised-button mat-primary">Choose drone images</label>
     </div>
