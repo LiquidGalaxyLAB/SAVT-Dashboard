@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MdToolbarModule, MdListModule, MdCheckboxModule, MdButtonModule } from '@angular/material';
 
 import { KmlGeneratorComponent } from './kml-generator.component';
+import { ImageImporterComponent } from './image-importer/image-importer.component';
 
 import { KmlGeneratorRoutingModule } from './kml-generator.routing.module';
 import { DialogModule } from './dialog/dialog.module';
@@ -23,7 +24,7 @@ import { SharedModule } from '../shared/shared.module';
         SharedModule,
     ],
     exports: [],
-    declarations: [KmlGeneratorComponent],
+    declarations: [KmlGeneratorComponent, ImageImporterComponent],
     providers: [],
 })
 export class KmlGeneratorModule { }
