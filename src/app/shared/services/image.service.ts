@@ -9,38 +9,28 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ImageService {
     private imagesUrl = 'http://localhost:3000/images';
-    private headers = new Headers({'Content-Type':
-    'application/json'});
-    private options = new RequestOptions({ headers: this.headers });
+    private headers = new Headers();
 
     constructor(private http: Http) { }
 
-/*
-    uploadImage(): Observable {
-        var formData: any = new FormData();
-        var xhr = new XMLHttpRequest();
-        for(var i = 0; i < files.length; i++) {
-            formData.append("uploads[]", files[i], files[i].name);
-        }
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    resolve(JSON.parse(xhr.response));
-                } else {
-                    reject(xhr.response);
+    uploadImage(image: File): Promise<any> {
+        return new Promise((resolve, reject) => {
+            var formData: any = new FormData();
+            var xhr = new XMLHttpRequest();
+            formData.append('upload', image, image.name);
+            xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            resolve(JSON.parse(xhr.response));
+                        } else {
+                            reject(xhr.response);
+                        }
+                    }
                 }
-            }
-        }
-        xhr.open("POST", url, true);
-        xhr.send(formData);
-    }
-
-    */
-
-    uploadImage(image: File): Observable<any> {
-        return this.http.post(this.imagesUrl, image)
-    .map(this.extractImagesData)
-    .catch(this.handleError);
+            xhr.open("POST", this.imagesUrl, true);
+            xhr.send(formData);
+        });
+            
     }
 
     private extractImagesData(res: Response) {

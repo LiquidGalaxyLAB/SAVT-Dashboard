@@ -1,2 +1,2 @@
-<input type="file" class="ng-hide" id="input-file-id" multiple />
+<input type="file" class="ng-hide" id="input-file-id" (change)="fileChangeEvent($event)"/>
 <label for="input-file-id" class="mat-raised-button mat-primary">Choose drone images</label>

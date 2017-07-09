@@ -11,6 +11,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 import { SensorService } from './services/sensor.service';
 import { SidenavService } from './services/sidenav.service';
+import { ImageService } from './services/image.service';
 
 @NgModule({
     imports: [
@@ -30,6 +31,7 @@ import { SidenavService } from './services/sidenav.service';
     providers: [
         SensorService,
         SidenavService,
+        ImageService,
     ],
 })
 export class SharedModule { }
