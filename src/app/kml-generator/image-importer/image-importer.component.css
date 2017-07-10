@@ -1,3 +1,7 @@
 .ng-hide {
     display: none;
 }
+
+.images li {
+    display: inline;
+}

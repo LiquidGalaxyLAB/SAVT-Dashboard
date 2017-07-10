@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 
+import { Image } from '../models/image';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -9,9 +11,17 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ImageService {
     private imagesUrl = 'http://localhost:3000/images';
-    private headers = new Headers();
+    private headers = new Headers({'Content-Type':
+'application/json'});
+    private options = new RequestOptions({ headers: this.headers });
 
     constructor(private http: Http) { }
+
+    getImages(): Observable<Image[]> {
+        return this.http.get(this.imagesUrl)
+    .map(this.extractImagesData)
+    .catch(this.handleError);
+    }
 
     uploadImage(image: File): Promise<any> {
         return new Promise((resolve, reject) => {
@@ -35,7 +45,22 @@ export class ImageService {
 
     private extractImagesData(res: Response) {
         let body = res.json();
-        return body[0] || { };
+        console.log(body);
+        var imagesData = [{}];
+        var filesUrl = 'http://localhost:3000/photos/';
+        for (let element of body) {
+            console.log(element);
+            var jsonAux = {
+            "_id": element._id,
+            "name": element.originalName,
+            "url": filesUrl + element.fileName
+            }; 
+            imagesData.push(jsonAux);
+        }
+        console.log(imagesData);
+        // Had to slice imagesData array because it saves an empty slot
+        // in its first position
+        return imagesData.slice(1, imagesData.length) || { };
     }
 
     private handleError (error: Response | any) {

@@ -1,2 +1,9 @@
 <input type="file" class="ng-hide" id="input-file-id" (change)="fileChangeEvent($event)"/>
 <label for="input-file-id" class="mat-raised-button mat-primary">Choose drone images</label>
+<div class="carousel">
+    <ul class="images">
+        <li *ngFor="let image of images">
+            <img src="{{image.url}}" height="50" width="50">
+        </li>
+    </ul>
+</div>
