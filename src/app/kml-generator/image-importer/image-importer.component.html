@@ -2,8 +2,8 @@
 <label for="input-file-id" class="mat-raised-button mat-primary">Choose drone images</label>
 <div class="carousel">
     <ul class="images">
-        <li *ngFor="let image of images">
-            <img src="{{image.url}}" height="50" width="50">
+        <li *ngFor="let image of images" (click)="onSelect(image)">
+            <img src="{{image.url}}" [height]="height" [width]="width">
         </li>
     </ul>
 </div>

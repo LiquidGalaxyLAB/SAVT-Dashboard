@@ -14,6 +14,10 @@ import { Observable } from 'rxjs/Rx';
 export class ImageImporterComponent implements OnInit {
 
     images: Image[];
+    selectedImage: Image;
+    
+    width: number = 100;
+    height: number = 100;
 
     constructor(
         private imageService: ImageService
@@ -40,5 +44,10 @@ export class ImageImporterComponent implements OnInit {
         }, (error) => {
             console.log(error);
         });
+    }
+
+    onSelect(image: Image) {
+        console.log(image);
+        this.selectedImage = image;
     }
 }
