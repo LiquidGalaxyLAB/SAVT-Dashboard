@@ -43,6 +43,14 @@ export class ImageService {
             
     }
 
+    generateKmlImages(images: Image[]): Observable<Response> {
+        const url = `${this.imagesUrl}/generateKml`;
+        const jsonBody = this.createBodyKml(images);
+        return this.http.post(url, jsonBody, this.options)
+    .map(this.extractImagesData)
+    .catch(this.handleError);
+    }
+
     private extractImagesData(res: Response) {
         let body = res.json();
         var imagesData = [{}];
@@ -61,6 +69,28 @@ export class ImageService {
         // Had to slice imagesData array because it saves an empty slot
         // in its first position
         return imagesData.slice(1, imagesData.length) || { };
+    }
+
+    private createBodyKml(images: Image[]): string {
+        var jsonAux = {
+            "name": "ImagesOverlayKml",
+            "images": <any>[]
+        };
+        images.forEach(image => {
+            var imageJson = {
+                "name": image.name,
+                "url": image.url,
+                "coords": {
+                    // "north": image.north,
+                    // "south": image.south,
+                    // "east": image.east,
+                    // "west": image.west,
+                    // "rotation": image.rotation
+                }
+            };
+            jsonAux.images.push(imageJson)
+        });
+        return JSON.stringify(jsonAux);
     }
 
     private handleError (error: Response | any) {

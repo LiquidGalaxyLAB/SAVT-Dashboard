@@ -1,9 +1,6 @@
 <md-toolbar color="primary" class="map-toolbar">
     {{ title }}
     <div class="map-toolbar-right">
-        <button md-mini-fab (click)="testingButton2()" color="warn">
-            <md-icon>explore</md-icon>
-        </button>
         <button md-mini-fab (click)="rotateLeft()" color="warn">
             <md-icon>rotate_left</md-icon>
         </button>
@@ -15,6 +12,9 @@
         </button>
         <button md-mini-fab (click)="decreaseSize()" color="warn">
             <md-icon>zoom_out</md-icon>
+        </button>
+        <button md-mini-fab (click)="generateKml()" color="accent">
+            <md-icon>weekend</md-icon>
         </button>
     </div>
 </md-toolbar>

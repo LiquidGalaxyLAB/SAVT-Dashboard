@@ -59,18 +59,38 @@ export class GoogleMapComponent implements OnInit {
 
     increaseSize() {
         this.getHtmlElement();
-        let width = parseInt(this.elem.style.width, 10);
-        let height = parseInt(this.elem.style.height, 10);
-        this.elem.style.width = `${width + 20}px`;
-        this.elem.style.height = `${height + 20}px`;
+        const increment = 20;
+
+        const width = parseInt(this.elem.style.width, 10);
+        const height = parseInt(this.elem.style.height, 10);
+        this.elem.style.width = `${width + increment}px`;
+        this.elem.style.height = `${height + increment}px`;
+
+        const left = parseInt(this.elem.style.left, 10);
+        const top = parseInt(this.elem.style.top, 10);
+        this.elem.style.left = `${left - increment / 2}px`;
+        this.elem.style.top = `${top - increment / 2}px`;
     }
 
     decreaseSize() {
         this.getHtmlElement();
+        const decrement = 20;
+
         let width = parseInt(this.elem.style.width, 10);
         let height = parseInt(this.elem.style.height, 10);
         this.elem.style.width = `${width - 20}px`;
         this.elem.style.height = `${height - 20}px`;
+
+        const left = parseInt(this.elem.style.left, 10);
+        const top = parseInt(this.elem.style.top, 10);
+        this.elem.style.left = `${left + decrement / 2}px`;
+        this.elem.style.top = `${top + decrement / 2}px`;
+    }
+
+    generateKml() {
+        console.log(this.imageOverlay.getBounds());
+        this.getHtmlElement();
+        this.elem.style.opacity = '0.5';
     }
 
     private getHtmlElement(): void {
@@ -79,6 +99,7 @@ export class GoogleMapComponent implements OnInit {
         document.querySelectorAll('google-map img[src^="http://localhost:3000"]')
         */
         this.elem = <HTMLElement>document.querySelector('google-map img[src^="http://localhost:3000"]');
+        this.elem.style.position = 'relative';
         let parent = this.elem.parentElement;
         parent.style.overflow = 'initial';
     }
@@ -98,10 +119,10 @@ export class GoogleMapComponent implements OnInit {
 
     private calculateBounds(latitude: number, longitude: number, altitude: number): any {
         var bounds = {
-            north: latitude + 0.0005,
-            south: latitude - 0.0005,
-            east: longitude + 0.0008,
-            west: longitude - 0.0008
+            north: latitude + 0.0009,
+            south: latitude - 0.0009,
+            east: longitude + 0.00144,
+            west: longitude - 0.00144
         };
         console.log(bounds);
         return bounds;
