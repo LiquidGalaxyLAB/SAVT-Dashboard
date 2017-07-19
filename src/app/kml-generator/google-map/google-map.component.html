@@ -1,8 +1,20 @@
 <md-toolbar color="primary" class="map-toolbar">
     {{ title }}
     <div class="map-toolbar-right">
-        <button md-mini-fab (click)="cleanMarkers()" color="warn">
-            <md-icon>clear</md-icon>
+        <button md-mini-fab (click)="testingButton2()" color="warn">
+            <md-icon>explore</md-icon>
+        </button>
+        <button md-mini-fab (click)="rotateLeft()" color="warn">
+            <md-icon>rotate_left</md-icon>
+        </button>
+        <button md-mini-fab (click)="rotateRight()" color="warn">
+            <md-icon>rotate_right</md-icon>
+        </button>
+        <button md-mini-fab (click)="increaseSize()" color="warn">
+            <md-icon>zoom_in</md-icon>
+        </button>
+        <button md-mini-fab (click)="decreaseSize()" color="warn">
+            <md-icon>zoom_out</md-icon>
         </button>
     </div>
 </md-toolbar>
@@ -13,7 +25,7 @@
     [latitude]="latitude" 
     [longitude]="longitude"
     [zoom]="zoom"
-    [mapTypeId]="mapTypeId"
+    [mapTypeId]="mapTypeId" 
     (mapReady)="mapReady($event)"
     (mapClick)="mapClicked($event)">
     <agm-marker

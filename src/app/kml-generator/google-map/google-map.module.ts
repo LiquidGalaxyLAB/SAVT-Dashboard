@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { MdToolbarModule} from '@angular/material';
 import { MdButtonModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
@@ -21,6 +21,6 @@ import { GoogleMapComponent } from './google-map.component';
         GoogleMapComponent
     ],
     declarations: [GoogleMapComponent],
-    providers: [],
+    providers: [GoogleMapsAPIWrapper],
 })
 export class GoogleMapModule { }

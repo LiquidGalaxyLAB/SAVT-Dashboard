@@ -45,19 +45,19 @@ export class ImageService {
 
     private extractImagesData(res: Response) {
         let body = res.json();
-        console.log(body);
         var imagesData = [{}];
         var filesUrl = 'http://localhost:3000/photos/';
         for (let element of body) {
-            console.log(element);
             var jsonAux = {
             "_id": element._id,
             "name": element.originalName,
-            "url": filesUrl + element.fileName
+            "url": filesUrl + element.fileName,
+            "latitude": element.gpsLatitude,
+            "longitude": element.gpsLongitude,
+            "altitude": element.gpsAltitude
             }; 
             imagesData.push(jsonAux);
         }
-        console.log(imagesData);
         // Had to slice imagesData array because it saves an empty slot
         // in its first position
         return imagesData.slice(1, imagesData.length) || { };
