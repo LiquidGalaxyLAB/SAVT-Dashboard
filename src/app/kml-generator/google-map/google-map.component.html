@@ -1,6 +1,6 @@
 <md-toolbar color="primary" class="map-toolbar">
     {{ title }}
-    <div class="map-toolbar-right">
+    <div class="map-toolbar-right" *ngIf="selectedImage">
         <button md-mini-fab (click)="rotateLeft()" color="warn">
             <md-icon>rotate_left</md-icon>
         </button>
@@ -19,6 +19,9 @@
         <button md-mini-fab (click)="decreaseHeight()" color="warn">
             <md-icon>zoom_out</md-icon>
         </button>
+        <button md-mini-fab (click)="deleteOverlay()" color="warn">
+            <md-icon>cancel</md-icon>
+        </button>
         <button md-mini-fab (click)="generateKml()" color="accent">
             <md-icon>weekend</md-icon>
         </button>
@@ -36,7 +39,8 @@
     (mapClick)="mapClicked($event)">
     <agm-marker
         *ngFor= "let marker of markers"
-        (markerClick)="markerClick(marker, $event)" 
+        (markerClick)="markerClick(marker, $event)"
+        [iconUrl]="marker.iconUrl"
         [latitude]="marker.latitude" 
         [longitude]="marker.longitude"
         [label]="marker.label"

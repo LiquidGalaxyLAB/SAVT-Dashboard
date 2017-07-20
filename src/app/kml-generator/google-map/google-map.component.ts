@@ -15,8 +15,11 @@ declare var google: any;
 
 export class GoogleMapComponent implements OnInit {
     title="Google Maps API";
+    selectedImage: boolean;
+    iconUrl: string;
     latitude: number = 42.50793490998189;
     longitude: number = -2.6150627450980393;
+    label: string;
     zoom: number = 16;
     mapTypeId: string = "hybrid";
     markers: marker[] = [];
@@ -30,6 +33,9 @@ export class GoogleMapComponent implements OnInit {
     private _onMapClickListener: any;
     private elem: HTMLElement;
     private orientationValue: number = 0;
+
+    /* This counter will start on 1 to be confortable to future inexpert users */
+    private imageMarkesCounter: number;
 
     @Output() onClean = new EventEmitter<boolean>();
 
@@ -109,6 +115,13 @@ export class GoogleMapComponent implements OnInit {
         this.elem.style.opacity = '0.5';
     }
 
+    deleteOverlay() {
+        this.imageOverlay.setMap(null);
+        this.orientationValue = 0;
+        this.selectedImage = false;
+        this.cleanMarkers();
+    }
+
     private getHtmlElement(): void {
         /*
         document.querySelector('google-map img[src^="http://localhost:3000"]')
@@ -123,13 +136,14 @@ export class GoogleMapComponent implements OnInit {
     private subscribeToMap(): void {
         this.mapService.observableSubject$.subscribe( image => {
             if (this.imageOverlay != null){
-                this.imageOverlay.setMap(null);
-                this.orientationValue = 0;
+                this.deleteOverlay();
             }
             this.imageOverlay = new google.maps.GroundOverlay(
             image.url, this.calculateBounds(image.latitude, image.longitude, image.altitude));
             this.imageOverlay.setMap(this._map);
             console.log(image.name);
+            this.selectedImage = true;
+            this.cleanMarkers();
         });
     }
 
@@ -145,12 +159,16 @@ export class GoogleMapComponent implements OnInit {
     }
 
     mapClicked(event: MouseEvent){
-        /* console.info(event);
-        this.markers.push({
-            latitude: event.coords.lat,
-            longitude: event.coords.lng,
-            draggable: true
-        }); */
+        if (this.selectedImage && this.imageMarkesCounter<=4) {
+            this.markers.push({
+                iconUrl: 'http://maps.google.com/mapfiles/kml/paddle/grn-blank.png',
+                latitude: event.coords.lat,
+                longitude: event.coords.lng,
+                label: String(this.imageMarkesCounter),
+                draggable: true
+            });
+            this.imageMarkesCounter++;
+        }
     }
 
     mapReady(map: any) {
@@ -169,6 +187,7 @@ export class GoogleMapComponent implements OnInit {
         const clean = true;
         this.onClean.emit(clean);
         this.markers.splice(0, this.markers.length);
+        this.imageMarkesCounter = 1;
     }
 
     addMarker(name: string, location: number[]): void {
@@ -192,6 +211,7 @@ export class GoogleMapComponent implements OnInit {
 }
 
 interface marker {
+    iconUrl?: string;
     latitude: number;
     longitude: number;
     label?: string;
