@@ -45,45 +45,61 @@ export class GoogleMapComponent implements OnInit {
 
     rotateLeft() {
         this.getHtmlElement();
-        this.elem.style.webkitTransform = 'rotate('+(this.orientationValue-15)+'deg)';
-        this.elem.style.transform = 'rotate('+(this.orientationValue-15)+'deg)';
-        this.orientationValue -= 15;
+        const degrees = 10;
+        this.elem.style.webkitTransform = 'rotate('+(this.orientationValue-degrees)+'deg)';
+        this.elem.style.transform = 'rotate('+(this.orientationValue-degrees)+'deg)';
+        this.orientationValue -= degrees;
     }
 
     rotateRight() {
         this.getHtmlElement();
-        this.elem.style.webkitTransform = 'rotate('+(this.orientationValue+15)+'deg)';
-        this.elem.style.transform = 'rotate('+(this.orientationValue+15)+'deg)';
-        this.orientationValue += 15;
+        const degrees = 10;
+        this.elem.style.webkitTransform = 'rotate('+(this.orientationValue+degrees)+'deg)';
+        this.elem.style.transform = 'rotate('+(this.orientationValue+degrees)+'deg)';
+        this.orientationValue += degrees;
     }
 
-    increaseSize() {
+    increaseWidth() {
         this.getHtmlElement();
-        const increment = 20;
+        const increment = 10;
 
         const width = parseInt(this.elem.style.width, 10);
-        const height = parseInt(this.elem.style.height, 10);
         this.elem.style.width = `${width + increment}px`;
-        this.elem.style.height = `${height + increment}px`;
 
         const left = parseInt(this.elem.style.left, 10);
-        const top = parseInt(this.elem.style.top, 10);
         this.elem.style.left = `${left - increment / 2}px`;
+    }
+
+    decreaseWidth() {
+        this.getHtmlElement();
+        const decrement = 10;
+
+        let width = parseInt(this.elem.style.width, 10);
+        this.elem.style.width = `${width - decrement}px`;
+
+        const left = parseInt(this.elem.style.left, 10);
+        this.elem.style.left = `${left + decrement / 2}px`;
+    }
+
+    increaseHeight() {
+        this.getHtmlElement();
+        const increment = 10;
+        
+        const height = parseInt(this.elem.style.height, 10);
+        this.elem.style.height = `${height + increment}px`;
+
+        const top = parseInt(this.elem.style.top, 10);
         this.elem.style.top = `${top - increment / 2}px`;
     }
 
-    decreaseSize() {
+    decreaseHeight() {
         this.getHtmlElement();
-        const decrement = 20;
+        const decrement = 10;
 
-        let width = parseInt(this.elem.style.width, 10);
         let height = parseInt(this.elem.style.height, 10);
-        this.elem.style.width = `${width - 20}px`;
-        this.elem.style.height = `${height - 20}px`;
+        this.elem.style.height = `${height - decrement}px`;
 
-        const left = parseInt(this.elem.style.left, 10);
         const top = parseInt(this.elem.style.top, 10);
-        this.elem.style.left = `${left + decrement / 2}px`;
         this.elem.style.top = `${top + decrement / 2}px`;
     }
 
