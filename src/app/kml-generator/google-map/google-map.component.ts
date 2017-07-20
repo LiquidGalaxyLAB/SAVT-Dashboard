@@ -22,7 +22,8 @@ export class GoogleMapComponent implements OnInit {
     label: string;
     zoom: number = 16;
     mapTypeId: string = "hybrid";
-    markers: marker[] = [];
+    sensorsMarkers: marker[] = [];
+    imageMarkers: marker[] = [];
 
     url: string;
 
@@ -36,8 +37,6 @@ export class GoogleMapComponent implements OnInit {
 
     /* This counter will start on 1 to be confortable to future inexpert users */
     private imageMarkesCounter: number;
-
-    @Output() onClean = new EventEmitter<boolean>();
 
     constructor(
         private mapApi: GoogleMapsAPIWrapper,
@@ -160,7 +159,7 @@ export class GoogleMapComponent implements OnInit {
 
     mapClicked(event: MouseEvent){
         if (this.selectedImage && this.imageMarkesCounter<=4) {
-            this.markers.push({
+            this.imageMarkers.push({
                 iconUrl: 'http://maps.google.com/mapfiles/kml/paddle/grn-blank.png',
                 latitude: event.coords.lat,
                 longitude: event.coords.lng,
@@ -184,14 +183,12 @@ export class GoogleMapComponent implements OnInit {
     }
 
     cleanMarkers(): void {
-        const clean = true;
-        this.onClean.emit(clean);
-        this.markers.splice(0, this.markers.length);
+        this.imageMarkers.splice(0, this.imageMarkers.length);
         this.imageMarkesCounter = 1;
     }
 
     addMarker(name: string, location: number[]): void {
-        this.markers.push({
+        this.sensorsMarkers.push({
             latitude: location[0],
             longitude:location[1],
             label: name,
@@ -200,13 +197,13 @@ export class GoogleMapComponent implements OnInit {
     }
 
     removeMarker(name: string, location: number[]): void {
-        var index = this.markers.indexOf({
+        var index = this.sensorsMarkers.indexOf({
             latitude: location[0],
             longitude:location[1],
             label: name,
             draggable: false
         });
-        this.markers.splice(index, 1);
+        this.sensorsMarkers.splice(index, 1);
     }
 }
 
