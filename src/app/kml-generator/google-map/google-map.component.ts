@@ -3,7 +3,9 @@ import { MouseEvent, GoogleMapsAPIWrapper } from '@agm/core';
 import { KmlLayerOptions } from '@agm/core/services/google-maps-types';
 import { Polyline } from "@agm/core/services/google-maps-types";
 
-import { MapService } from '../../shared/services/map.service';
+import { ImageService } from '../../shared/services/image.service';
+
+import { marker } from '../../shared/models/marker';
 
 declare var google: any;
 
@@ -40,7 +42,7 @@ export class GoogleMapComponent implements OnInit {
 
     constructor(
         private mapApi: GoogleMapsAPIWrapper,
-        private mapService: MapService
+        private imageService: ImageService
     ) { }
 
     ngOnInit( ) {
@@ -108,10 +110,8 @@ export class GoogleMapComponent implements OnInit {
         this.elem.style.top = `${top + decrement / 2}px`;
     }
 
-    generateKml() {
-        console.log(this.imageOverlay.getBounds());
-        this.getHtmlElement();
-        this.elem.style.opacity = '0.5';
+    saveOverlay() {
+        this.imageService.saveMarkers(this.imageMarkers);
     }
 
     deleteOverlay() {
@@ -128,12 +128,13 @@ export class GoogleMapComponent implements OnInit {
         */
         this.elem = <HTMLElement>document.querySelector('google-map img[src^="http://localhost:3000"]');
         this.elem.style.position = 'relative';
+        this.elem.style.opacity = '0.7';
         let parent = this.elem.parentElement;
         parent.style.overflow = 'initial';
     }
 
     private subscribeToMap(): void {
-        this.mapService.observableSubject$.subscribe( image => {
+        this.imageService.observableSubject$.subscribe( image => {
             if (this.imageOverlay != null){
                 this.deleteOverlay();
             }
@@ -179,7 +180,8 @@ export class GoogleMapComponent implements OnInit {
     }
 
     dragEnd(m: marker, event: MouseEvent) {
-        //console.log('dragEnd' + m + event);
+        this.imageMarkers.find(imageMarker => imageMarker.label == m.label).latitude = event.coords.lat;
+        this.imageMarkers.find(imageMarker => imageMarker.label == m.label).longitude = event.coords.lng;
     }
 
     cleanMarkers(): void {
@@ -205,12 +207,4 @@ export class GoogleMapComponent implements OnInit {
         });
         this.sensorsMarkers.splice(index, 1);
     }
-}
-
-interface marker {
-    iconUrl?: string;
-    latitude: number;
-    longitude: number;
-    label?: string;
-    draggable: boolean;
 }

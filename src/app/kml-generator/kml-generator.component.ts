@@ -8,6 +8,8 @@ import { DialogComponent } from './dialog/dialog.component';
 import { Sensor } from '../shared/models/sensor';
 import { SensorService } from '../shared/services/sensor.service';
 
+import { ImageService } from '../shared/services/image.service';
+
 import { Observable } from 'rxjs/Rx';
 import { AnonymousSubscription } from 'rxjs/Subscription';
 
@@ -20,6 +22,7 @@ import { AnonymousSubscription } from 'rxjs/Subscription';
 export class KmlGeneratorComponent implements OnInit {
     @ViewChild('googleMap') googleMap: any;
     // googleMap has to be defined by a eventEmitter / SOMETHING (not any)
+    @ViewChild('imageImporter') imageImporter: any;
     sensors: Sensor[];
     errorMessage: string;
     kmlMessage: string;
@@ -29,6 +32,7 @@ export class KmlGeneratorComponent implements OnInit {
     private postsSubscription: AnonymousSubscription;
 
     constructor(private sensorService: SensorService,
+        private imageService: ImageService,
         private router: Router,
         public dialog: MdDialog,
         public snackbar: MdSnackBar) { }
@@ -79,9 +83,40 @@ export class KmlGeneratorComponent implements OnInit {
 
     generateKml(): void {
         if (this.checkedSensorsList.length === 0){
-            this.snackbar.open('Hey ! You must select some sensor to generate a KML.', 'OK', {
-                duration: 3000
-            });
+            if (this.imageImporter.selectedImage === undefined){
+                this.snackbar.open('Hey ! You must select some data to generate a KML.', 'OK', {
+                duration: 4000
+                });
+            }
+            else if (this.googleMap.imageMarkers.length != 4){
+                this.snackbar.open('Hey ! You must calibrate the image by placing 4 markerts on its corners', 'OK', {
+                duration: 4000
+                });
+            }
+            else {
+                let dialogRef = this.dialog.open(DialogComponent);
+                dialogRef.afterClosed().subscribe(response => {
+                    if (response === 'yes') {
+                        // Generate KML
+                        this.imageService.generateKmlImage(this.imageImporter.selectedImage)
+                        .subscribe(
+                        response => {
+                        if (response.toString() === 'OK'){
+                            this.snackbar.open('KML Generated !', 'OK', {
+                                duration: 2000
+                            });
+                        }
+                        else if (response.toString() === 'ERROR'){
+                            this.snackbar.open('There was an error generating the KML file :(', 'OK', {
+                                duration: 2000
+                            });
+                        }
+                        },
+                            error => this.errorMessage = <any>error
+                        );
+                    }
+                });
+            }
         }
         else {
             let dialogRef = this.dialog.open(DialogComponent);

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { Image } from '../../shared/models/image';
 import { ImageService } from '../../shared/services/image.service';
-import { MapService } from '../../shared/services/map.service';
 
 import { Observable } from 'rxjs/Rx';
 
@@ -22,7 +21,6 @@ export class ImageImporterComponent implements OnInit {
 
     constructor(
         private imageService: ImageService,
-        private mapService: MapService
     ) { }
 
     ngOnInit() {
@@ -51,6 +49,6 @@ export class ImageImporterComponent implements OnInit {
     onSelect(image: Image) {
         console.log(image);
         this.selectedImage = image;
-        this.mapService.addImageOverlay(image);
+        this.imageService.addImageOverlay(image);
     }
 }
