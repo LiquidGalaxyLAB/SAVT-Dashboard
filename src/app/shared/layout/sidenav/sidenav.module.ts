@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { MdExpansionModule } from '@angular/material';
+import { MdListModule } from '@angular/material';
+import { MdIconModule } from '@angular/material';
 
 import { SidenavComponent } from './sidenav.component';
 
 @NgModule({
     imports: [
-        MdExpansionModule,
+        MdListModule,
+        MdIconModule
     ],
     exports: [
         SidenavComponent

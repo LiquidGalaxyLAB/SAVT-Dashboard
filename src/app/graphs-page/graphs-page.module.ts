@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MdExpansionModule } from '@angular/material';
 import { MdSlideToggleModule } from '@angular/material';
 
 import { GraphsPageComponent } from './graphs-page.component';
@@ -14,7 +13,6 @@ import { SharedModule } from '../shared/shared.module';
         FormsModule,
         CommonModule,
         GraphsPageRoutingModule,
-        MdExpansionModule,
         MdSlideToggleModule,
         SharedModule
     ],

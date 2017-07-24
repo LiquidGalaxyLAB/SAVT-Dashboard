@@ -1,12 +1,25 @@
-<div>
-    <md-accordion [displayMode]="default" [multi]="true">
-        <md-expansion-panel #panel1 [hideToggle]="false">
-            <md-expansion-panel-header>Section 1</md-expansion-panel-header>
-            <p>Expansion panel content</p>
-        </md-expansion-panel>
-        <md-expansion-panel #panel2 [hideToggle]="false">
-            <md-expansion-panel-header>Section 2</md-expansion-panel-header>
-            <p>Expansion panel content</p>
-        </md-expansion-panel>
-    </md-accordion>
+<div class="sidenav-menu">
+        <md-nav-list>
+            <h3 md-subheader>Data</h3>
+            <md-list-item (click)="goToSensors()">
+                <md-icon md-list-icon>wifi_tendering</md-icon>
+                Sensors
+            </md-list-item>
+            <md-list-item (click)="goToImages()">
+                <md-icon md-list-icon>camera_alt</md-icon>
+                Drone images
+            </md-list-item>
+            <md-divider></md-divider>
+            <h3 md-subheader>Liquid Galaxy</h3>
+            <md-list-item (click)="goToKmlGenerator()">
+                <md-icon md-list-icon>layers</md-icon>
+                KML Generator
+            </md-list-item>
+            <md-divider></md-divider>
+            <h3 md-subheader>More</h3>
+            <md-list-item (click)="goToAbout()">
+                <md-icon md-list-icon>info</md-icon>
+                About
+            </md-list-item>
+        </md-nav-list>
 </div>
