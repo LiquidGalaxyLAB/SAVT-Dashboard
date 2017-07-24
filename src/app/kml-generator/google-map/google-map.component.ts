@@ -141,6 +141,7 @@ export class GoogleMapComponent implements OnInit {
             this.imageOverlay = new google.maps.GroundOverlay(
             image.url, this.calculateBounds(image.latitude, image.longitude, image.altitude));
             this.imageOverlay.setMap(this._map);
+            this.toLocation(image.latitude, image.longitude);
             console.log(image.name);
             this.selectedImage = true;
             this.cleanMarkers();
@@ -156,6 +157,11 @@ export class GoogleMapComponent implements OnInit {
         };
         console.log(bounds);
         return bounds;
+    }
+
+    private toLocation(latitude: number, longitude: number){
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     mapClicked(event: MouseEvent){
@@ -196,6 +202,7 @@ export class GoogleMapComponent implements OnInit {
             label: name,
             draggable: false
         });
+        this.toLocation(location[0], location[1]);
     }
 
     removeMarker(name: string, location: number[]): void {

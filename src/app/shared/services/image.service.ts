@@ -77,6 +77,8 @@ export class ImageService {
     private extractImagesData(res: Response) {
         let body = res.json();
         var imagesData = [{}];
+        // filesUrl has to contain just the fileName of the image (because
+        // the address of the server will be different)
         var filesUrl = 'http://localhost:3000/photos/';
         for (let element of body) {
             var jsonAux = {
@@ -103,10 +105,10 @@ export class ImageService {
             "name": image.name,
             "url": image.url,
             "coords": {
-                "lower-left": [this.imageMarkers[0].latitude, this.imageMarkers[0].latitude],
-                "lower-right": [this.imageMarkers[1].latitude, this.imageMarkers[1].latitude],
-                "upper-right": [this.imageMarkers[2].latitude, this.imageMarkers[2].latitude],
-                "upper-left": [this.imageMarkers[3].latitude, this.imageMarkers[3].latitude]
+                "lower-left": [this.imageMarkers[0].longitude, this.imageMarkers[0].latitude],
+                "lower-right": [this.imageMarkers[1].longitude, this.imageMarkers[1].latitude],
+                "upper-right": [this.imageMarkers[2].longitude, this.imageMarkers[2].latitude],
+                "upper-left": [this.imageMarkers[3].longitude, this.imageMarkers[3].latitude]
             }
         };
             jsonAux.images.push(imageJson)

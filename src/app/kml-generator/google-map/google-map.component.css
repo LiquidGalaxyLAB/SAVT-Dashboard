@@ -7,5 +7,6 @@ agm-map {
 }
 
 .map-toolbar-right {
-  flex: auto; text-align: right
+  flex: auto; 
+  text-align: right;
 }

@@ -13,6 +13,8 @@ import { Observable } from 'rxjs/Rx';
 
 export class ImageImporterComponent implements OnInit {
 
+    title: string = 'Drone photos gallery';
+    
     images: Image[];
     selectedImage: Image;
     
