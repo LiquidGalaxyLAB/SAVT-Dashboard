@@ -17,6 +17,7 @@
             </ul>
         </div>
         <div class="map-col">
+            <div [ngBusy]="busy"></div>
             <google-map #googleMap (onClean)="onClean($event)"></google-map>          
         </div>
     </div>

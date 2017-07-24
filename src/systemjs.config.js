@@ -33,7 +33,8 @@
       'socket.io-client': 'node_modules/socket.io-client/dist/socket.io.js',
       "ng2-charts": "node_modules/ng2-charts",
       "chart.js": "node_modules/chart.js/dist",
-      "@agm/core": "node_modules/@agm/core/core.umd.js"
+      "@agm/core": "node_modules/@agm/core/core.umd.js",
+      'angular2-busy': 'npm:angular2-busy'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -50,7 +51,11 @@
       },
       'socket.io-client': {"defaultExtension": "js"},
       "ng2-charts": { main: "ng2-charts.js", defaultExtension: "js" },
-      "chart.js": { main: "Chart.bundle.js", defaultExtension: "js"}
+      "chart.js": { main: "Chart.bundle.js", defaultExtension: "js"},
+      'angular2-busy': {
+            main: './index.js',
+            defaultExtension: 'js'
+        }
     }
   });
 })(this);

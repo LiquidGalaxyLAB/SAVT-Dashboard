@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MdToolbarModule, MdListModule, MdCheckboxModule, MdButtonModule } from '@angular/material';
 
+import { BusyModule } from 'angular2-busy';
+
 import { KmlGeneratorComponent } from './kml-generator.component';
 import { ImageImporterComponent } from './image-importer/image-importer.component';
 
@@ -18,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
         MdListModule,
         MdCheckboxModule,
         MdButtonModule,
+        BusyModule,
         KmlGeneratorRoutingModule,
         DialogModule,
         GoogleMapModule,

@@ -12,6 +12,7 @@ import { ImageService } from '../shared/services/image.service';
 
 import { Observable } from 'rxjs/Rx';
 import { AnonymousSubscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'sensors',
@@ -27,6 +28,8 @@ export class KmlGeneratorComponent implements OnInit {
     errorMessage: string;
     kmlMessage: string;
     checkedSensorsList: Sensor[] = [];
+
+    busy: Subscription;
     
     private timerSubscription: AnonymousSubscription;
     private postsSubscription: AnonymousSubscription;
@@ -98,7 +101,7 @@ export class KmlGeneratorComponent implements OnInit {
                 dialogRef.afterClosed().subscribe(response => {
                     if (response === 'yes') {
                         // Generate KML
-                        this.imageService.generateKmlImage(this.imageImporter.selectedImage)
+                        this.busy = this.imageService.generateKmlImage(this.imageImporter.selectedImage)
                         .subscribe(
                         response => {
                         if (response.toString() === 'OK'){
