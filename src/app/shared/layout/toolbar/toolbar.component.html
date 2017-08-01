@@ -1,4 +1,8 @@
 <md-toolbar color="primary">
-    <button md-button (click)="sidenavButton()"><md-icon>menu</md-icon></button>
-    <button md-button (click)="goToHome()">{{title}}</button>
+    <div class="left-container">
+        <button md-button (click)="sidenavButton()"><md-icon>menu</md-icon></button>
+    </div>
+    <div class="center-container">
+        <button md-button (click)="goToHome()">{{title}}</button>
+    </div>
 </md-toolbar>
