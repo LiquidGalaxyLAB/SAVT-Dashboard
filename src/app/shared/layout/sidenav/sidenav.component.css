@@ -5,3 +5,7 @@
     padding: 5px;
     background: #009688;
 }
+
+md-list-item span{
+    color: white;
+}

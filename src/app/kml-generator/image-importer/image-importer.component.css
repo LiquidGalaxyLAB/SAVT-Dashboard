@@ -4,6 +4,7 @@
 
 .images li {
     display: inline;
+    cursor: pointer;
 }
 
 .image-toolbar {
