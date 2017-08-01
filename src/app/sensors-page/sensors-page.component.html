@@ -1,1 +1,9 @@
-<h1> Hello </h1>
+<md-toolbar color="accent">Sensors page</md-toolbar>
+<div class="page-container">
+    <div class="grid">
+        <div class="chart-container"
+            *ngFor="let magnitude of magnitudes">
+                <bar-chart></bar-chart>
+        </div>
+    </div>
+</div>

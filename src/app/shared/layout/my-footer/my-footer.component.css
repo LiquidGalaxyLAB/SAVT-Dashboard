@@ -1,0 +1,25 @@
+.footer-container{
+    display: flex;
+    flex-direction: row;
+    background-color: #009688;
+}
+
+.footer-section {
+    flex-grow: 1;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.footer-section .title {
+    color: black;
+    font: 400 16px/28px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.footer-section .content {
+    color: white;
+}
+
+.footer-section .content img {
+    height: 50px;
+    width: auto;
+}

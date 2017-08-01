@@ -8,7 +8,14 @@ import {ActivatedRoute, Params } from '@angular/router';
 })
 
 export class SensorsPageComponent implements OnInit {
-    constructor() { }
 
-    ngOnInit() { }
+    magnitudes: any[];
+
+    constructor() {
+        
+     }
+
+    ngOnInit() {
+
+     }
 }

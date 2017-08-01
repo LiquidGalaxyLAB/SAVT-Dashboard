@@ -1,7 +1,10 @@
 <toolbar></toolbar>
 <md-sidenav-container class="example-container">
-    <md-sidenav #sidenav class="example-sidenav">
+    <md-sidenav #sidenav class="example-sidenav" style="overflow-y:hidden; border-top: 1px solid green; border-bottom: 1px solid green;">
     <sidenav></sidenav>
     </md-sidenav>
     <router-outlet></router-outlet>
 </md-sidenav-container>
+<footer>
+    <my-footer></my-footer>
+</footer>
