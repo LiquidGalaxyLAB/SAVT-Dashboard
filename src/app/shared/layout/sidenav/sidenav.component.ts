@@ -19,7 +19,7 @@ export class SidenavComponent implements OnInit {
 
     goToSensors() {
         this.sidenavService.closeSidenav();
-        //this.router.navigate(['/sensorsList']);
+        this.router.navigate(['/sensors']);
     }
 
     goToImages() {
