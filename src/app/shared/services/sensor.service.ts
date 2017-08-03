@@ -47,7 +47,7 @@ export class SensorService {
     
     private extractSensorsData(res: Response) {
         let body = res.json();
-        return body || { };
+        return body.sensors || { };
     }
 
     private extractSensorData(res: Response) {
@@ -69,11 +69,26 @@ export class SensorService {
             var sensorJson = {
                 "name": sensor.name,
                 "data": {
-                    "temperature": sensor.temperatureValue
+                    "AirTemperature": sensor.valueAirTemperature,
+                    "AirHumidity": sensor.valueAirHumidity,
+                    "AirPressure": sensor.valueAirPressure,
+                    "SoilTemperature": sensor.valueSoilTemperature,
+                    "LeafWetness": sensor.valueLeafWetness,
+                    "AtmosphericPressure": sensor.valueAtmosphericPressure,
+                    "SolarRadiation": sensor.valueSolarRadiation,
+                    "UltravioletRadiation": sensor.valueUltravioletRadiation,
+                    "TrunkDiameter": sensor.valueTrunkDiameter,
+                    "StemDiameter": sensor.valueStemDiameter,
+                    "FruitDiameter": sensor.valueFruitDiameter,
+                    "Anemometer": sensor.valueAnemometer,
+                    "WindVane": sensor.valueWindVane,
+                    "Pluviometer": sensor.valuePluviometer,
+                    "Luminosity": sensor.valueLuminosity,
+                    "Ultrasound": sensor.valueUltrasound
                 },
                 "coords": {
-                    "lat": sensor.location[0],
-                    "lng": sensor.location[1]
+                    "lat": sensor.locationLatitude,
+                    "lng": sensor.locationLongitude
                 }
             };
             jsonAux.sensors.push(sensorJson)

@@ -81,7 +81,7 @@ export class BarChartComponent implements OnInit {
        this.sensorService.getSensors()
     .subscribe(
         sensors => sensors.forEach(element => {
-          let aux = {data: [element.temperatureValue, element.humidityValue],
+          let aux = {data: [element.valueAirTemperature, element.valueAirHumidity],
           label: element.name};
           this.barChartData.push(aux);
         }),

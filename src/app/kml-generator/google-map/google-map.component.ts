@@ -19,10 +19,10 @@ export class GoogleMapComponent implements OnInit {
     title="Google Maps API";
     selectedImage: boolean;
     iconUrl: string;
-    latitude: number = 42.50793490998189;
-    longitude: number = -2.6150627450980393;
+    latitude: number = 41.617251;
+    longitude: number = 0.625888;
     label: string;
-    zoom: number = 16;
+    zoom: number = 5;
     mapTypeId: string = "hybrid";
     sensorsMarkers: marker[] = [];
     imageMarkers: marker[] = [];
@@ -162,6 +162,7 @@ export class GoogleMapComponent implements OnInit {
     private toLocation(latitude: number, longitude: number){
         this.latitude = latitude;
         this.longitude = longitude;
+        this.zoom = 16;
     }
 
     mapClicked(event: MouseEvent){
@@ -195,20 +196,20 @@ export class GoogleMapComponent implements OnInit {
         this.imageMarkesCounter = 1;
     }
 
-    addMarker(name: string, location: number[]): void {
+    addMarker(name: string, locationLatitude: number, locationLongitude: number): void {
         this.sensorsMarkers.push({
-            latitude: location[0],
-            longitude:location[1],
+            latitude: locationLatitude,
+            longitude: locationLongitude,
             label: name,
             draggable: false
         });
-        this.toLocation(location[0], location[1]);
+        this.toLocation(locationLatitude, locationLongitude);
     }
 
-    removeMarker(name: string, location: number[]): void {
+    removeMarker(name: string, locationLatitude: number, locationLongitude: number): void {
         var index = this.sensorsMarkers.indexOf({
-            latitude: location[0],
-            longitude:location[1],
+            latitude: locationLatitude,
+            longitude: locationLongitude,
             label: name,
             draggable: false
         });

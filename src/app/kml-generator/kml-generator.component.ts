@@ -151,11 +151,11 @@ export class KmlGeneratorComponent implements OnInit {
         //'event' parameter has to determinate a type. Look in material.io library
         const isChecked = event['checked'];
         if (isChecked) {
-            this.googleMap.addMarker(sensor.name, sensor.location);
+            this.googleMap.addMarker(sensor.name, sensor.locationLatitude, sensor.locationLongitude);
             this.checkedSensorsList.push(sensor);
         }
         else {
-            this.googleMap.removeMarker(sensor.name, sensor.location);
+            this.googleMap.removeMarker(sensor.name, sensor.locationLatitude, sensor.locationLongitude);
             var index = this.checkedSensorsList.indexOf(sensor);
             this.checkedSensorsList.splice(index, 1);
             console.log(this.checkedSensorsList);
