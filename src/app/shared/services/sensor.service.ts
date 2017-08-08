@@ -96,6 +96,32 @@ export class SensorService {
         return JSON.stringify(jsonAux);
     }
 
+    /*
+    getAvailableAttributes(): Observable<{}> {
+        return this.http.get(url)
+    .map(this.extractAvailableAttributesData)
+    .catch(this.handleError);
+    }
+
+    private extractAvailableAttributesData(res: Response) {
+        let body = res.json();
+        return body.summary.attributes.available || { };
+    }
+
+    */
+
+    getAttributeValues(name: string): Observable<{sensorName: string, sensorValue: number}[]> {
+        const url = `${this.sensorsUrl}/attribute/${name}`;
+        return this.http.get(url)
+    .map(this.extractAttributeData)
+    .catch(this.handleError);
+    }
+
+    private extractAttributeData(res: Response) {
+        let body = res.json();
+        return body.values || { };
+    }
+
       private handleError (error: Response | any) {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;

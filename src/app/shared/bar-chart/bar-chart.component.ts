@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { Sensor } from '../models/sensor';
 import { SensorService } from '../services/sensor.service';
 
 import { Observable } from 'rxjs/Rx';
@@ -11,22 +10,20 @@ import { Observable } from 'rxjs/Rx';
 })
 
 export class BarChartComponent implements OnInit {
-    
-  sensors: Sensor[];
+  
+  @Input() magnitude: string;
+
   errorMessage: string;
 
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels:string[] = ['SensorApi7', 'SensorApi8', 'SensorApi9', 'SensorApi10', 'SensorApi11', 'SensorApi12', 'SensorApi13'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
  
-  public barChartData:any[] = [
-    {data: [28.1, 28.2, 28.1, 28.3, 28.1, 28.1, 28.3], label: 'Temperature'},
-    {data: [23.5, 23.5, 23.5, 23.4, 23.4, 23.4, 23.4], label: 'Humidity'}
-  ];
+  public barChartLabels:string[] = [];
+  public barChartData:any[] = [];
  
   // events
   public chartClicked(e:any):void {
@@ -36,57 +33,42 @@ export class BarChartComponent implements OnInit {
   public chartHovered(e:any):void {
     //console.log(e);
   }
- 
-  public randomize():void {
-    // Only Change 3 values
-    let data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
-    /**
-     * (My guess), for Angular to recognize the change in the dataset
-     * it has to change the dataset variable directly,
-     * so one way around it, is to clone the data, change it and then
-     * assign it;
-     */
-  }
     
     constructor(
       private sensorService: SensorService
     ) { }
 
     ngOnInit() {
-      /*this.initializeLabels();
-      console.log(this.barChartLabels);
       this.initializeData();
-      console.log(this.barChartData);*/
-
-     }
-
-     initializeLabels(): void {
-       // This will be called on the API (/listMagnitudes)
-       this.barChartLabels.splice(0, this.barChartLabels.length);
-       this.barChartLabels.push('Temperature', 'Humidity');
+      console.log(this.barChartData);
+      console.log(this.barChartLabels);
      }
 
      initializeData(): void {
-       this.barChartData.splice(0, this.barChartData.length);
-       this.sensorService.getSensors()
-    .subscribe(
-        sensors => sensors.forEach(element => {
-          let aux = {data: [element.valueAirTemperature, element.valueAirHumidity],
-          label: element.name};
-          this.barChartData.push(aux);
-        }),
-        error => this.errorMessage = <any>error
-        );
+       console.log(this.magnitude);
+       let dataArray:number[] = [];
+       this.sensorService.getAttributeValues(this.magnitude)
+      .subscribe(
+        (values: {sensorName: string, sensorValue: number}[]) => 
+        values.forEach(element => {
+          dataArray.push(element.sensorValue);
+          this.barChartLabels.push(element.sensorName);
+        })
+      );
+      this.barChartData.push(
+        {
+          data: dataArray,
+          label: this.magnitude
+        }
+      );
+     }
+
+     private removeData(): void {
+        this.barChartData.splice(0, this.barChartData.length);
+     }
+
+     private removeLabels(): void {
+        this.barChartLabels.splice(0, this.barChartLabels.length);
      }
 
 }

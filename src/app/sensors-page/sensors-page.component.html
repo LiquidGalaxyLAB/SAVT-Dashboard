@@ -2,8 +2,8 @@
 <div class="page-container">
     <div class="grid">
         <div class="chart-container"
-            *ngFor="let magnitude of magnitudes">
-                <bar-chart></bar-chart>
+        *ngFor="let magnitude of magnitudes">
+            <bar-chart [magnitude]="magnitude"></bar-chart>
         </div>
     </div>
 </div>

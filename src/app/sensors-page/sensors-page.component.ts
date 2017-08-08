@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Params } from '@angular/router';
 
+import { SensorService } from '../shared/services/sensor.service';
+
 @Component({
     selector: 'sensors-page',
     templateUrl: './sensors-page.component.html',
@@ -9,13 +11,22 @@ import {ActivatedRoute, Params } from '@angular/router';
 
 export class SensorsPageComponent implements OnInit {
 
-    magnitudes: any[];
+    magnitudes: any[] = ['valueAirTemperature'];
 
-    constructor() {
+    constructor(
+        private sensorService: SensorService
+    ) {
         
      }
 
     ngOnInit() {
-
+        //this.initializeMagnitudes();
      }
+
+    /*private initializeMagnitudes(): void {
+        this.sensorService.getAvailableAttributes()
+    .subscribe(
+
+        );
+    }*/
 }
