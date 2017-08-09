@@ -2,43 +2,43 @@
     flex: auto; text-align: right;
 }
 
-.sensors-first-row-container {
+.page-container {
     display: flex;
+    flex-direction: row;
 }
 
-.sensors-col {
-    height: auto;
-    flex-grow: 1;
-    overflow-y:auto;
+.map-container {
+    flex: 3;
 }
 
-.map-col {
-    flex: auto;
-    flex-grow: 3
+.data-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sensors-container {
+    flex: 1;
+    overflow-y: auto;
 }
 
 .sensors-list {
+    height: 100%;
     display: flex;
+    flex-direction: row;
     padding-right: 1em;
 }
 
 .sensor-checkbox {
-    flex: auto;
     align-self: center;
     padding-right: 0.5em;
 }
 
 .sensor-item {
-    flex: auto;
     text-align: right;
 }
 
-.sensors-second-row-container {
-    width: auto;
-    height: auto;
-    display: block;
-}
-
-.secon-row-col {
-    width: auto;
+.images-container {
+    flex: 1;
+    overflow-y: auto;
 }

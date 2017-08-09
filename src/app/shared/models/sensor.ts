@@ -19,5 +19,5 @@ export class Sensor {
     valuePluviometer?: number;
     valueLuminosity?: number;
     valueUltrasound?: number;
-    update_at: string;
+    updated_at: string;
 }

@@ -39,7 +39,6 @@ export class SensorService {
     generateKmlSensors(sensors: Sensor[]): Observable<Response> {
         const url = `${this.sensorsUrl}/kml/generateKml`;
         const jsonBody = this.createBodyKml(sensors);
-        console.log(jsonBody);
         return this.http.post(url, jsonBody, this.options)
     .map(this.extractSensorsData)
     .catch(this.handleError);
@@ -47,6 +46,7 @@ export class SensorService {
     
     private extractSensorsData(res: Response) {
         let body = res.json();
+        console.log(body);
         return body.sensors || { };
     }
 
@@ -68,6 +68,7 @@ export class SensorService {
         sensors.forEach(sensor => {
             var sensorJson = {
                 "name": sensor.name,
+                "date": sensor.updated_at,
                 "data": {
                     "AirTemperature": sensor.valueAirTemperature,
                     "AirHumidity": sensor.valueAirHumidity,

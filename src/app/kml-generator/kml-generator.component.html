@@ -5,8 +5,13 @@
         </button>
     </div>
 </md-toolbar>
-    <div class="sensors-first-row-container">
-        <div class="sensors-col">
+<div class="page-container">
+    <div class="map-container">
+      <div [ngBusy]="busy"></div>
+      <google-map #googleMap (onClean)="onClean($event)"></google-map>          
+    </div>
+    <div class="data-container">
+        <div class="sensors-container">
             <ul class="sensors">
                 <md-nav-list *ngFor="let sensor of sensors" class="sensors-list">
                 <md-checkbox class="sensor-checkbox" (change)="checkboxChange($event, sensor);"></md-checkbox>
@@ -16,11 +21,8 @@
                 </md-nav-list>
             </ul>
         </div>
-        <div class="map-col">
-            <div [ngBusy]="busy"></div>
-            <google-map #googleMap (onClean)="onClean($event)"></google-map>          
+        <div class="images-container">
+            <image-importer #imageImporter></image-importer>
         </div>
     </div>
-    <div class="sensors-second-row-container">
-        <image-importer #imageImporter></image-importer>
-    </div>
+</div>

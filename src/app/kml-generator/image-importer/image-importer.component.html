@@ -1,14 +1,15 @@
-<md-toolbar color="primary" class="image-toolbar">
-    {{ title }}
-    <div class="image-toolbar-right">
-        <input type="file" class="ng-hide" id="input-file-id" (change)="fileChangeEvent($event)"/>
-        <label for="input-file-id" class="mat-raised-button mat-warn">Choose drone images</label>
+<div class="image-importer-container">
+    <md-toolbar color="primary" class="image-toolbar">
+        <div class="image-toolbar-right">
+            <input type="file" class="ng-hide" id="input-file-id" (change)="fileChangeEvent($event)"/>
+            <label for="input-file-id" class="mat-raised-button mat-warn">Choose drone images</label>
+        </div>
+    </md-toolbar>
+    <div class="carousel">
+        <ul class="images">
+            <li *ngFor="let image of images" (click)="onSelect(image)">
+                <img src="{{image.url}}" [height]="height" [width]="width">
+            </li>
+        </ul>
     </div>
-</md-toolbar>
-<div class="carousel">
-    <ul class="images">
-        <li *ngFor="let image of images" (click)="onSelect(image)">
-            <img src="{{image.url}}" [height]="height" [width]="width">
-        </li>
-    </ul>
 </div>
