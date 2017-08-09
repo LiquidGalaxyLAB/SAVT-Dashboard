@@ -1,6 +1,6 @@
-<md-toolbar color="accent">KML Generation Page
+<md-toolbar color="primary">
     <div class="generate-button">
-        <button md-raised-button (click)="generateKml()" color="primary">
+        <button md-raised-button (click)="generateKml()" color="warn">
             <b>Generate KML</b>
         </button>
     </div>
@@ -19,6 +19,11 @@
                             <b>{{sensor.name}}</b>
                         </md-list-item>
                 </md-nav-list>
+            </ul>
+            <ul class="fields">
+                <div *ngFor="let field of fields" class="field-item" (click)="selectField(field)">
+                    <p>{{field.name}}</p>
+                </div>
             </ul>
         </div>
         <div class="images-container">

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 
 import { Sensor } from '../models/sensor';
+import { Field } from '../models/field';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -11,6 +12,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SensorService {
     private sensorsUrl = 'http://localhost:3000/sensors';
+    private fieldsUrl = 'http://localhost:3000/fields';
     private headers = new Headers({'Content-Type':
 'application/json'});
     private options = new RequestOptions({ headers: this.headers });
@@ -27,6 +29,12 @@ export class SensorService {
         const url = `${this.sensorsUrl}/${name}`;
         return this.http.get(url)
     .map(this.extractSensorData)
+    .catch(this.handleError);
+    }
+
+    getFields(): Observable<Field[]> {
+        return this.http.get(this.fieldsUrl)
+    .map(this.extractFieldsData)
     .catch(this.handleError);
     }
 
@@ -53,6 +61,11 @@ export class SensorService {
     private extractSensorData(res: Response) {
         let body = res.json();
         return body[0] || { };
+    }
+
+    private extractFieldsData(res: Response) {
+        let body = res.json();
+        return body || { };
     }
 
     private extractSensorDataName(res: Response) {

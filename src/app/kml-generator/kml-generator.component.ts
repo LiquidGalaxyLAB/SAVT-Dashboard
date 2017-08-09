@@ -6,6 +6,7 @@ import { MdSnackBar } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 
 import { Sensor } from '../shared/models/sensor';
+import { Field } from '../shared/models/field';
 import { SensorService } from '../shared/services/sensor.service';
 
 import { ImageService } from '../shared/services/image.service';
@@ -25,6 +26,9 @@ export class KmlGeneratorComponent implements OnInit {
     // googleMap has to be defined by a eventEmitter / SOMETHING (not any)
     @ViewChild('imageImporter') imageImporter: any;
     sensors: Sensor[];
+    fields: Field[];
+    fieldSensors: String[];
+    fieldSelected: Field;
     errorMessage: string;
     kmlMessage: string;
     checkedSensorsList: Sensor[] = [];
@@ -59,13 +63,24 @@ export class KmlGeneratorComponent implements OnInit {
     }
 
     private refreshData(): void {
-        this.postsSubscription = this.sensorService.getSensors()
+        /*this.postsSubscription = this.sensorService.getSensors()
     .subscribe(
         sensors => {
             this.sensors = sensors;
             this.subscribeToData();
             this.snackbar.open('Sensors list UPDATED', 'OK', {
                 duration: 500
+            });
+        },
+        error => this.errorMessage = <any>error
+        );*/
+        this.postsSubscription = this.sensorService.getFields()
+    .subscribe(
+        fields => {
+            this.fields = fields;
+            this.subscribeToData();
+            this.snackbar.open('Fields list UPDATED', 'OK', {
+                duration: 1000
             });
         },
         error => this.errorMessage = <any>error
@@ -76,6 +91,14 @@ export class KmlGeneratorComponent implements OnInit {
         this.sensorService.getSensors()
     .subscribe(
         sensors => this.sensors = sensors,
+        error => this.errorMessage = <any>error
+        );
+    }
+
+    getFields(): void {
+        this.sensorService.getFields()
+    .subscribe(
+        fields => this.fields = fields,
         error => this.errorMessage = <any>error
         );
     }
@@ -165,6 +188,12 @@ export class KmlGeneratorComponent implements OnInit {
     onClean(clean: boolean): void {
         this.checkedSensorsList.splice(0, this.checkedSensorsList.length);
         console.log(this.checkedSensorsList);
+    }
+
+    selectField(field: Field): void {
+        this.fieldSelected = field;
+        this.fieldSensors = field.sensors;
+        console.log(this.fieldSensors);
     }
 
 }

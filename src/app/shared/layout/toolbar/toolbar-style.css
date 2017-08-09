@@ -1,5 +1,7 @@
 md-toolbar {
   display: flex;
+  position: fixed;
+  z-index: 44;
 }
 button {
   font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;

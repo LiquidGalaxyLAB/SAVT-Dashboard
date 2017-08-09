@@ -1,5 +1,14 @@
+:host {
+    flex: 1;
+    padding-top: 56px;
+}
+
+@media(min-width: 400px) {
+    padding-top: 64px;
+}
+
 .generate-button {
-    flex: auto; text-align: right;
+    flex: auto; text-align: center;
 }
 
 .page-container {
@@ -19,7 +28,8 @@
 
 .sensors-container {
     flex: 1;
-    overflow-y: auto;
+    width: 100%;
+    height: auto;
 }
 
 .sensors-list {
@@ -36,6 +46,15 @@
 
 .sensor-item {
     text-align: right;
+}
+
+.fields {
+    overflow-y: auto;
+}
+
+.field-item {
+    text-align: center;
+    cursor: pointer;
 }
 
 .images-container {

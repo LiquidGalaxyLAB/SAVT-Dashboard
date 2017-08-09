@@ -1,5 +1,5 @@
 agm-map {
-  height: 60%;
+  height: 90%;
 }
 
 .map-toolbar {
@@ -8,5 +8,5 @@ agm-map {
 
 .map-toolbar-right {
   flex: auto; 
-  text-align: right;
+  text-align: center;
 }
