@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MdToolbarModule, MdListModule, MdCheckboxModule, MdButtonModule } from '@angular/material';
+import { MdToolbarModule, MdListModule, MdButtonModule } from '@angular/material';
 
 import { BusyModule } from 'angular2-busy';
 
@@ -18,7 +18,6 @@ import { SharedModule } from '../shared/shared.module';
         CommonModule,
         MdToolbarModule,
         MdListModule,
-        MdCheckboxModule,
         MdButtonModule,
         BusyModule,
         KmlGeneratorRoutingModule,

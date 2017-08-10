@@ -145,6 +145,7 @@ export class GoogleMapComponent implements OnInit {
             console.log(image.name);
             this.selectedImage = true;
             this.cleanMarkers();
+            this.cleanSensorMarkers();
         });
     }
 
@@ -198,6 +199,7 @@ export class GoogleMapComponent implements OnInit {
 
     addMarker(name: string, locationLatitude: number, locationLongitude: number): void {
         this.sensorsMarkers.push({
+            iconUrl: 'http://maps.google.com/mapfiles/kml/shapes/target.png',
             latitude: locationLatitude,
             longitude: locationLongitude,
             label: name,
@@ -208,11 +210,16 @@ export class GoogleMapComponent implements OnInit {
 
     removeMarker(name: string, locationLatitude: number, locationLongitude: number): void {
         var index = this.sensorsMarkers.indexOf({
+            iconUrl: 'http://maps.google.com/mapfiles/kml/shapes/target.png',
             latitude: locationLatitude,
             longitude: locationLongitude,
             label: name,
             draggable: false
         });
         this.sensorsMarkers.splice(index, 1);
+    }
+
+    cleanSensorMarkers(): void {
+        this.sensorsMarkers.splice(0, this.sensorsMarkers.length);
     }
 }

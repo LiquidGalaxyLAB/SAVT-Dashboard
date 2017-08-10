@@ -25,7 +25,7 @@ export class KmlGeneratorComponent implements OnInit {
     @ViewChild('googleMap') googleMap: any;
     // googleMap has to be defined by a eventEmitter / SOMETHING (not any)
     @ViewChild('imageImporter') imageImporter: any;
-    sensors: Sensor[];
+    sensors: Sensor[] = [];
     fields: Field[];
     fieldSensors: String[];
     fieldSelected: Field;
@@ -63,17 +63,6 @@ export class KmlGeneratorComponent implements OnInit {
     }
 
     private refreshData(): void {
-        /*this.postsSubscription = this.sensorService.getSensors()
-    .subscribe(
-        sensors => {
-            this.sensors = sensors;
-            this.subscribeToData();
-            this.snackbar.open('Sensors list UPDATED', 'OK', {
-                duration: 500
-            });
-        },
-        error => this.errorMessage = <any>error
-        );*/
         this.postsSubscription = this.sensorService.getFields()
     .subscribe(
         fields => {
@@ -83,14 +72,6 @@ export class KmlGeneratorComponent implements OnInit {
                 duration: 1000
             });
         },
-        error => this.errorMessage = <any>error
-        );
-    }
-
-    getSensors(): void {
-        this.sensorService.getSensors()
-    .subscribe(
-        sensors => this.sensors = sensors,
         error => this.errorMessage = <any>error
         );
     }
@@ -108,7 +89,7 @@ export class KmlGeneratorComponent implements OnInit {
     }
 
     generateKml(): void {
-        if (this.checkedSensorsList.length === 0){
+        if (this.sensors.length === 0){
             if (this.imageImporter.selectedImage === undefined){
                 this.snackbar.open('Hey ! You must select some data to generate a KML.', 'OK', {
                 duration: 4000
@@ -149,7 +130,7 @@ export class KmlGeneratorComponent implements OnInit {
         dialogRef.afterClosed().subscribe(response => {
             if (response === 'yes') {
                 // Generate KML
-                this.sensorService.generateKmlSensors(this.checkedSensorsList)
+                this.busy = this.sensorService.generateKmlSensors(this.sensors)
             .subscribe(
                 response => {
                     if (response.toString() === 'OK'){
@@ -170,30 +151,28 @@ export class KmlGeneratorComponent implements OnInit {
         }
     }
 
-    checkboxChange(event: Event, sensor:Sensor): void {
-        //'event' parameter has to determinate a type. Look in material.io library
-        const isChecked = event['checked'];
-        if (isChecked) {
-            this.googleMap.addMarker(sensor.name, sensor.locationLatitude, sensor.locationLongitude);
-            this.checkedSensorsList.push(sensor);
-        }
-        else {
-            this.googleMap.removeMarker(sensor.name, sensor.locationLatitude, sensor.locationLongitude);
-            var index = this.checkedSensorsList.indexOf(sensor);
-            this.checkedSensorsList.splice(index, 1);
-            console.log(this.checkedSensorsList);
-        }
-    }
-
-    onClean(clean: boolean): void {
-        this.checkedSensorsList.splice(0, this.checkedSensorsList.length);
-        console.log(this.checkedSensorsList);
-    }
-
     selectField(field: Field): void {
+        this.cleanField();
         this.fieldSelected = field;
         this.fieldSensors = field.sensors;
-        console.log(this.fieldSensors);
+        this.fieldSensors.forEach(fieldSensor => {
+            this.sensorService.getSensorById(fieldSensor)
+        .subscribe(
+            sensor => this.placeSensor(sensor),
+            error => this.errorMessage = <any>error
+            );
+        });
+    }
+
+    private placeSensor(sensor: Sensor) {
+        this.sensors.push(sensor);
+        this.googleMap.addMarker(sensor.name, sensor.locationLatitude, sensor.locationLongitude);
+    }
+
+    private cleanField(): void {
+        this.sensors.splice(0, this.sensors.length);
+        this.googleMap.cleanMarkers();
+        this.googleMap.cleanSensorMarkers();
     }
 
 }

@@ -25,8 +25,15 @@ export class SensorService {
     .catch(this.handleError);
     }
 
-    getSensor(name: string): Observable<Sensor> {
-        const url = `${this.sensorsUrl}/${name}`;
+    getSensorById(id: String): Observable<Sensor> {
+        const url = `${this.sensorsUrl}/${id}`;
+        return this.http.get(url)
+    .map(this.extractJsonData)
+    .catch(this.handleError);
+    }
+
+    getSensorByName(name: String): Observable<Sensor> {
+        const url = `${this.sensorsUrl}/name/${name}`;
         return this.http.get(url)
     .map(this.extractSensorData)
     .catch(this.handleError);
@@ -34,7 +41,7 @@ export class SensorService {
 
     getFields(): Observable<Field[]> {
         return this.http.get(this.fieldsUrl)
-    .map(this.extractFieldsData)
+    .map(this.extractJsonData)
     .catch(this.handleError);
     }
 
@@ -63,12 +70,7 @@ export class SensorService {
         return body[0] || { };
     }
 
-    private extractFieldsData(res: Response) {
-        let body = res.json();
-        return body || { };
-    }
-
-    private extractSensorDataName(res: Response) {
+    private extractJsonData(res: Response) {
         let body = res.json();
         return body || { };
     }

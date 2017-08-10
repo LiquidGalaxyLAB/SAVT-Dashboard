@@ -12,14 +12,6 @@
     </div>
     <div class="data-container">
         <div class="sensors-container">
-            <ul class="sensors">
-                <md-nav-list *ngFor="let sensor of sensors" class="sensors-list">
-                <md-checkbox class="sensor-checkbox" (change)="checkboxChange($event, sensor);"></md-checkbox>
-                        <md-list-item class="sensor-item" (click)="goToDetail(sensor)">
-                            <b>{{sensor.name}}</b>
-                        </md-list-item>
-                </md-nav-list>
-            </ul>
             <ul class="fields">
                 <div *ngFor="let field of fields" class="field-item" (click)="selectField(field)">
                     <p>{{field.name}}</p>

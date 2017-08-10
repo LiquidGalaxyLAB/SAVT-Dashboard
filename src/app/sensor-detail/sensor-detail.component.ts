@@ -41,7 +41,7 @@ export class SensorDetailComponent implements OnInit {
      getSensor(): void {
         this.route.params
     .switchMap((params: Params) =>
-            this.sensorService.getSensor(params['name']))
+            this.sensorService.getSensorByName(params['name']))
     .subscribe(
             sensor => this.sensor = sensor,
             error => this.errorMessage = <any>error
