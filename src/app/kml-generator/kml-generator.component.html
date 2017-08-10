@@ -12,11 +12,13 @@
     </div>
     <div class="data-container">
         <div class="sensors-container">
-            <ul class="fields">
-                <div *ngFor="let field of fields" class="field-item" (click)="selectField(field)">
-                    <p>{{field.name}}</p>
-                </div>
-            </ul>
+            <md-nav-list>
+                <md-list-item  *ngFor="let field of fields">
+                    <a (click)="selectField(field)">
+                        {{field.name}}
+                    </a>
+                </md-list-item>
+            </md-nav-list>
         </div>
         <div class="images-container">
             <image-importer #imageImporter></image-importer>
