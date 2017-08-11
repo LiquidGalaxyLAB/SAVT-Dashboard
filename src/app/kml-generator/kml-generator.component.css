@@ -11,6 +11,10 @@
     flex: auto; text-align: center;
 }
 
+.back-button-container {
+    text-align: center;
+}
+
 .page-container {
     height: 100%;
     display: flex;
@@ -33,13 +37,38 @@
     height: 100%;
 }
 
-.fields {
-    overflow-y: auto;
+div.items-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
-.field-item {
+div.item-card {
+    height: 100%;
+    width: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: center;
     cursor: pointer;
+    margin: 0.5em;
+}
+
+div.item-card:hover {
+    background-color: #009688;
+    color: white;
+}
+
+div.item-card .item-title {
+    padding: 15px;
+    font-family: 'Roboto', serif;
+    font-size: 1.5em;
+}
+
+div.item-card .item-caption {
+    font-family: 'Roboto', serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 15px;
 }
 
 .images-container {

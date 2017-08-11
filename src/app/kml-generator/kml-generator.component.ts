@@ -25,13 +25,18 @@ export class KmlGeneratorComponent implements OnInit {
     @ViewChild('googleMap') googleMap: any;
     // googleMap has to be defined by a eventEmitter / SOMETHING (not any)
     @ViewChild('imageImporter') imageImporter: any;
-    sensors: Sensor[] = [];
+
     fields: Field[];
+    sensors: Sensor[] = [];
     fieldSensors: String[];
     fieldSelected: Field;
     errorMessage: string;
     kmlMessage: string;
-    checkedSensorsList: Sensor[] = [];
+
+    viewFlags = {
+        "fieldsView": false,
+        "sensorsView": false
+    }
 
     busy: Subscription;
     
@@ -45,6 +50,7 @@ export class KmlGeneratorComponent implements OnInit {
         public snackbar: MdSnackBar) { }
 
     ngOnInit() {
+        this.viewFields();
         this.refreshData();
      }
 
@@ -76,7 +82,25 @@ export class KmlGeneratorComponent implements OnInit {
         );
     }
 
-    getFields(): void {
+    selectView(view: string) {
+        this.allFlagsFalse();
+        this.viewFlags[view] = true;
+    }
+
+    viewFields(): void {
+        this.viewFlags.fieldsView = true;
+        this.viewFlags.sensorsView = false;
+        this.getFields();
+    }
+
+    viewSensors(field: Field) {
+        this.selectField(field);
+        this.viewFlags.fieldsView = false;
+        this.viewFlags.sensorsView = true;
+        this.getSensors(field);
+    }
+
+    private getFields(): void {
         this.sensorService.getFields()
     .subscribe(
         fields => this.fields = fields,
@@ -84,8 +108,19 @@ export class KmlGeneratorComponent implements OnInit {
         );
     }
 
+    private getSensors(field: Field) {
+        this.sensors.splice(0, this.sensors.length);
+        field.sensors.forEach(sensor => {
+            this.sensorService.getSensorById(sensor)
+        .subscribe(
+            sensor => this.sensors.push(sensor),
+            error => this.errorMessage = <any>error
+            );
+        });
+    }
+
     goToDetail(sensor: Sensor): void {
-        this.router.navigate(['/sensor', sensor.name]);
+        this.googleMap.toLocation(sensor.locationLatitude, sensor.locationLongitude);
     }
 
     generateKml(): void {
@@ -165,7 +200,6 @@ export class KmlGeneratorComponent implements OnInit {
     }
 
     private placeSensor(sensor: Sensor) {
-        this.sensors.push(sensor);
         this.googleMap.addMarker(sensor.name, sensor.locationLatitude, sensor.locationLongitude);
     }
 
@@ -173,6 +207,11 @@ export class KmlGeneratorComponent implements OnInit {
         this.sensors.splice(0, this.sensors.length);
         this.googleMap.cleanMarkers();
         this.googleMap.cleanSensorMarkers();
+    }
+
+    private allFlagsFalse(): void {
+        this.viewFlags.fieldsView = false;
+        this.viewFlags.sensorsView = false;
     }
 
 }
