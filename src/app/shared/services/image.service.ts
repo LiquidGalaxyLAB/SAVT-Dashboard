@@ -5,6 +5,8 @@ import { Headers, Http, Response, RequestOptions } from '@angular/http';
 
 import { Image } from '../models/image';
 import { marker } from '../models/marker';
+import { Author } from '../models/author';
+import { Album } from '../models/album';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -18,6 +20,9 @@ export class ImageService {
     private image: Image;
 
     private imagesUrl = 'http://localhost:3000/images';
+    private authorsUrl = 'http://localhost:3000/authors';
+    private albumsUrl = 'http://localhost:3000/albums';
+
     private headers = new Headers({'Content-Type':
 'application/json'});
     private options = new RequestOptions({ headers: this.headers });
@@ -35,9 +40,29 @@ export class ImageService {
         this.mapSubject.next(this.image);
     }
 
+    getAuthors(): Observable<Author[]> {
+        return this.http.get(this.authorsUrl)
+    .map(this.extractJsonData)
+    .catch(this.handleError);
+    }
+
+    getAlbumById(id: String): Observable<Album> {
+        const url = `${this.albumsUrl}/${id}`;
+        return this.http.get(url)
+    .map(this.extractJsonData)
+    .catch(this.handleError);
+    }
+
+    getImageById(id: String): Observable<Image> {
+        const url = `${this.imagesUrl}/${id}`;
+        return this.http.get(url)
+    .map(this.extractJsonData)
+    .catch(this.handleError);
+    }
+
     getImages(): Observable<Image[]> {
         return this.http.get(this.imagesUrl)
-    .map(this.extractImagesData)
+    .map(this.extractJsonData)
     .catch(this.handleError);
     }
 
@@ -65,7 +90,7 @@ export class ImageService {
         const url = `${this.imagesUrl}/generateKml`;
         const jsonBody = this.createBodyKml(image);
         return this.http.post(url, jsonBody, this.options)
-    .map(this.extractImagesData)
+    .map(this.extractJsonData)
     .catch(this.handleError);
     }
 
@@ -74,26 +99,9 @@ export class ImageService {
         console.log(this.imageMarkers);
     }
 
-    private extractImagesData(res: Response) {
-        let body = res.json();
-        var imagesData = [{}];
-        // filesUrl has to contain just the fileName of the image (because
-        // the address of the server will be different)
-        var filesUrl = 'http://localhost:3000/photos/';
-        for (let element of body) {
-            var jsonAux = {
-            "_id": element._id,
-            "name": element.originalName,
-            "url": filesUrl + element.fileName,
-            "latitude": element.gpsLatitude,
-            "longitude": element.gpsLongitude,
-            "altitude": element.gpsAltitude
-            }; 
-            imagesData.push(jsonAux);
-        }
-        // Had to slice imagesData array because it saves an empty slot
-        // in its first position
-        return imagesData.slice(1, imagesData.length) || { };
+    private extractJsonData(res: Response) {
+         let body = res.json();
+         return body || { };
     }
 
     private createBodyKml(image: Image): string {

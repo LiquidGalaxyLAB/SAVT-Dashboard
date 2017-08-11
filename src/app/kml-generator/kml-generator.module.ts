@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MdToolbarModule, MdListModule, MdButtonModule } from '@angular/material';
+import { MdToolbarModule, MdListModule, MdButtonModule, MdIconModule } from '@angular/material';
 
 import { BusyModule } from 'angular2-busy';
 
@@ -19,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
         MdToolbarModule,
         MdListModule,
         MdButtonModule,
+        MdIconModule,
         BusyModule,
         KmlGeneratorRoutingModule,
         DialogModule,

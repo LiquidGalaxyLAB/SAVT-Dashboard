@@ -126,7 +126,7 @@ export class GoogleMapComponent implements OnInit {
         document.querySelector('google-map img[src^="http://localhost:3000"]')
         document.querySelectorAll('google-map img[src^="http://localhost:3000"]')
         */
-        this.elem = <HTMLElement>document.querySelector('google-map img[src^="http://localhost:3000"]');
+        this.elem = <HTMLElement>document.querySelector('google-map img[src^="http://"]');
         this.elem.style.position = 'relative';
         this.elem.style.opacity = '0.7';
         let parent = this.elem.parentElement;

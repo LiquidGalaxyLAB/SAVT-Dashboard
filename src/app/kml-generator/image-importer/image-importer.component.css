@@ -7,14 +7,77 @@
     display: none;
 }
 
+.button-container {
+    text-align: center;
+}
+
 .carousel {
     width: auto;
     height: 100%;
 }
 
-.images li {
-    display: inline;
+.cards-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.image-card {
+  width: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  cursor: pointer;
+  margin: 0.5em;
+}
+
+div.image-card img {
+    width:100%;
+}
+
+div.image-card:hover .caption{
+    background-color: #009688;
+    color: white;
+}
+
+div.caption {
+  padding: 10px;
+  font-family: 'Roboto', serif;
+  overflow: hidden;
+}
+
+div.items-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+div.item-card {
+    height: 100%;
+    width: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
     cursor: pointer;
+    margin: 0.5em;
+}
+
+div.item-card:hover {
+    background-color: #009688;
+    color: white;
+}
+
+div.item-card .item-title {
+    padding: 15px;
+    font-family: 'Roboto', serif;
+    font-size: 1.5em;
+}
+
+div.item-card .item-caption {
+    font-family: 'Roboto', serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 15px;
 }
 
 .image-toolbar {

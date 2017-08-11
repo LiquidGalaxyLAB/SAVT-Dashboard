@@ -6,10 +6,41 @@
         </div>
     </md-toolbar>
     <div class="carousel">
-        <ul class="images">
-            <li *ngFor="let image of images" (click)="onSelect(image)">
-                <img src="{{image.url}}" [height]="height" [width]="width">
-            </li>
-        </ul>
+        <div class="cards-container" *ngIf="viewFlags.authorsView">
+            <div class="image-card" *ngFor="let author of authors" (click)="viewAlbums(author)">
+                <img src="{{author.logoUrl}}">
+                <div class="caption">
+                    {{author.name}}
+                </div>
+            </div>
+        </div>
+        <div class="items-container" *ngIf="viewFlags.albumsView">
+            <div class="item-card" *ngFor="let album of albums" (click)="viewImages(album)">
+                <div class="item-title">
+                    {{ album.name }}
+                </div>
+                <div class="item-caption">
+                    {{ album.description }}
+                </div>
+            </div>
+            <div class="button-container">
+                <button md-mini-fab (click)="selectView('authorsView')" color="warn">
+                    <md-icon>subdirectory_arrow_left</md-icon>
+                </button>
+            </div>
+        </div>
+        <div class="cards-container" *ngIf="viewFlags.imagesView">
+            <div class="image-card" *ngFor="let image of images" (click)="onSelect(image)">
+                <img src="{{image.url}}">
+                <div class="caption">
+                    {{image.name}}
+                </div>
+            </div>
+            <div class="button-container">
+                <button md-mini-fab (click)="selectView('albumsView')" color="warn">
+                    <md-icon>subdirectory_arrow_left</md-icon>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
