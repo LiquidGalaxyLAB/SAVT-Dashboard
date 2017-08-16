@@ -28,6 +28,7 @@ export class ImageService {
     private options = new RequestOptions({ headers: this.headers });
 
     private imageMarkers: marker[];
+    private imageId: string;
 
     constructor(private http: Http) { }
 
@@ -43,6 +44,13 @@ export class ImageService {
     getAuthors(): Observable<Author[]> {
         return this.http.get(this.authorsUrl)
     .map(this.extractJsonData)
+    .catch(this.handleError);
+    }
+
+    getAuthorByName(name: String): Observable<Author> {
+        const url = `${this.authorsUrl}/name/${name}`;
+        return this.http.get(url)
+    .map(this.extractAuthorData)
     .catch(this.handleError);
     }
 
@@ -71,9 +79,11 @@ export class ImageService {
             var formData: any = new FormData();
             var xhr = new XMLHttpRequest();
             formData.append('upload', image, image.name);
+            var self = this;
             xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4) {
                         if (xhr.status == 200) {
+                            self.imageId = xhr.response;
                             resolve(JSON.parse(xhr.response));
                         } else {
                             reject(xhr.response);
@@ -99,9 +109,25 @@ export class ImageService {
         console.log(this.imageMarkers);
     }
 
+    uploadAlbum(albumName: string) {
+        const url = `${this.albumsUrl}/upload/${albumName}`;
+        const imageAux = this.imageId.substring(1, this.imageId.length - 1);
+        const jsonAux = {
+            "imageId": imageAux
+        };
+        return this.http.post(url, JSON.stringify(jsonAux), this.options)
+    .map(this.extractJsonData)
+    .catch(this.handleError);
+    }
+
     private extractJsonData(res: Response) {
          let body = res.json();
          return body || { };
+    }
+     
+    private extractAuthorData(res: Response) {
+        let body = res.json();
+        return body[0] || { };
     }
 
     private createBodyKml(image: Image): string {
@@ -119,7 +145,7 @@ export class ImageService {
                 "upper-left": [this.imageMarkers[3].longitude, this.imageMarkers[3].latitude]
             }
         };
-            jsonAux.images.push(imageJson)
+        jsonAux.images.push(imageJson)
         return JSON.stringify(jsonAux);
     }
 

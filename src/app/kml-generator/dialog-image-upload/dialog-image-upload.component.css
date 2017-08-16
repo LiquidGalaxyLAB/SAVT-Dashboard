@@ -1,0 +1,31 @@
+.upload-button-container {
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+.ng-hide {
+    display: none;
+}
+
+.file-name-container {
+    font-family: 'Roboto', serif;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.inputs-container {
+    text-align: center;
+}
+
+.select-author-container {
+    margin-top: 2em;
+}
+
+.select-album-container {
+    margin-top: 2em;
+}
+
+.save-button-container {
+    margin-top: 2em;
+    text-align: center;
+}

@@ -1,0 +1,42 @@
+<div class="upload-button-container">
+    <input type="file" class="ng-hide" id="input-file-id" (change)="fileChangeEvent($event)"/>
+    <label for="input-file-id" class="mat-raised-button mat-warn">Choose drone images</label>
+</div>
+<div *ngIf="fileUploaded" class="file-name-container">
+    {{ fileName }}
+</div>
+<div class="inputs-container">
+<!--
+    <div class="input-author-container">
+        <md-input-container>
+            <input mdInput placeholder="Author">
+        </md-input-container>
+    </div>
+-->
+    <div class="select-author-container">
+        <md-select [(ngModel)]="selectedAuthor"placeholder="Author" (change)="onSelect()">
+            <md-option *ngFor="let author of queryAuthors" [value]="author">
+                {{ author }}
+            </md-option>
+        </md-select>
+    </div>
+<!--    
+    <div class="input-album-container">
+        <md-input-container>
+            <input mdInput placeholder="Album">
+        </md-input-container>
+    </div>
+-->
+    <div *ngIf="authorSelected" class="select-album-container">
+        <md-select [(ngModel)]="selectedAlbum" placeholder="Album">
+            <md-option *ngFor="let album of queryAlbums" [value]="album">
+                {{ album }}
+            </md-option>
+        </md-select>
+    </div>
+</div>
+<div class="save-button-container">
+    <button md-fab color="primary" (click)="saveImage()">
+        <md-icon>save</md-icon>
+    </button>
+</div>

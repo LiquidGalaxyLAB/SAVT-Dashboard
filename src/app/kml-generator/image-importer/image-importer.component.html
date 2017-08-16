@@ -1,9 +1,8 @@
 <div class="image-importer-container">
     <md-toolbar color="primary" class="image-toolbar">
-        <div class="image-toolbar-right">
-            <input type="file" class="ng-hide" id="input-file-id" (change)="fileChangeEvent($event)"/>
-            <label for="input-file-id" class="mat-raised-button mat-warn">Choose drone images</label>
-        </div>
+        <button md-fab (click)="openUploadDialog()" color="warn">
+            <md-icon>add_a_photo</md-icon>
+        </button>
     </md-toolbar>
     <div class="carousel">
         <div class="cards-container" *ngIf="viewFlags.authorsView">
@@ -23,7 +22,7 @@
                     {{ album.description }}
                 </div>
             </div>
-            <div class="button-container">
+            <div class="back-button-container">
                 <button md-mini-fab (click)="selectView('authorsView')" color="warn">
                     <md-icon>subdirectory_arrow_left</md-icon>
                 </button>

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '@angular/material';
+import { MdButtonModule } from '@angular/material';
 import { MdDialogModule } from '@angular/material';
 
 import { DialogComponent } from './dialog.component';
 
 @NgModule({
     imports: [
-        MaterialModule,
+        MdButtonModule,
         MdDialogModule
     ],
     exports: [

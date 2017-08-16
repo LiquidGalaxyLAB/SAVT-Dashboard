@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MdDialog} from '@angular/material';
 
 import { ImageService } from '../../shared/services/image.service';
+import { DialogImageUploadComponent } from '../dialog-image-upload/dialog-image-upload.component';
 
 import { Image } from '../../shared/models/image';
 import { Author } from '../../shared/models/author';
@@ -36,12 +38,17 @@ export class ImageImporterComponent implements OnInit {
 
     constructor(
         private imageService: ImageService,
+        public dialog: MdDialog,
     ) { }
 
     ngOnInit() {
         this.viewFlags.authorsView = true;
         this.getAuthors();
      }
+
+    openUploadDialog(): void {
+        this.dialog.open(DialogImageUploadComponent);
+    }
 
     selectView(view: string) {
         this.allFlagsFalse();
@@ -101,17 +108,6 @@ export class ImageImporterComponent implements OnInit {
             image => this.images.push(image),
             error => this.errorMessage = <any>error
             );
-        });
-        console.log(this.images);
-    }
-
-    fileChangeEvent(fileInputEvent: any) {
-        //console.log(fileInputEvent.target.files[0]);
-        this.imageService.uploadImage(fileInputEvent.target.files[0]).then((result) => {
-            console.log(result);
-            this.getAuthors();
-        }, (error) => {
-            console.log(error);
         });
     }
 }

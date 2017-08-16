@@ -3,10 +3,6 @@
     width: auto;
 }
 
-.ng-hide {
-    display: none;
-}
-
 .back-button-container {
     text-align: center;
 }
@@ -81,11 +77,5 @@ div.item-card .item-caption {
 }
 
 .image-toolbar {
-    display: flex;
-    margin-bottom: 5px;
-}
-
-.image-toolbar-right {
-    flex: auto;
     text-align: center;
 }
