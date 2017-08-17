@@ -5,6 +5,7 @@ import { Polyline } from "@agm/core/services/google-maps-types";
 
 import { ImageService } from '../../shared/services/image.service';
 
+import { Image } from '../../shared/models/image';
 import { marker } from '../../shared/models/marker';
 
 declare var google: any;
@@ -18,6 +19,7 @@ declare var google: any;
 export class GoogleMapComponent implements OnInit {
     title="Google Maps API";
     selectedImage: boolean;
+    imageRef: Image;
     iconUrl: string;
     latitude: number = 41.617251;
     longitude: number = 0.625888;
@@ -26,8 +28,6 @@ export class GoogleMapComponent implements OnInit {
     mapTypeId: string = "hybrid";
     sensorsMarkers: marker[] = [];
     imageMarkers: marker[] = [];
-
-    url: string;
 
     private _map: any;
 
@@ -111,13 +111,18 @@ export class GoogleMapComponent implements OnInit {
     }
 
     saveOverlay() {
-        this.imageService.saveMarkers(this.imageMarkers);
+        console.log(this.imageRef);
+        this.imageService.saveMarkers(this.imageRef, this.imageMarkers).subscribe(
+            result => console.log(result),
+            error => console.log(error)
+        );
     }
 
     deleteOverlay() {
         this.imageOverlay.setMap(null);
         this.orientationValue = 0;
         this.selectedImage = false;
+        this.imageRef = undefined;
         this.cleanMarkers();
     }
 
@@ -144,6 +149,7 @@ export class GoogleMapComponent implements OnInit {
             this.toLocation(image.latitude, image.longitude);
             console.log(image.name);
             this.selectedImage = true;
+            this.imageRef = image;
             this.cleanMarkers();
             this.cleanSensorMarkers();
         });

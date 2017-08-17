@@ -5,6 +5,7 @@ import { ImageService } from '../../shared/services/image.service';
 
 import { Author } from '../../shared/models/author';
 import { Album } from '../../shared/models/album';
+import { Image } from '../../shared/models/image';
 
 @Component({
     selector: 'dialog-image-upload',
@@ -47,18 +48,23 @@ export class DialogImageUploadComponent implements OnInit {
     }
 
     saveImage(): void {
+        var resultImageId: Image;
         this.imageService.uploadImage(this.inputFile.target.files[0]).then((result) => {
             this.imageService.uploadAlbum(this.selectedAlbum.toString())
         .subscribe(
-            response => this.dialogRef.close(),
+            response => { 
+                this.imageService.getImageById(result).subscribe( image => {
+                    this.imageService.uploadOverlay(image).subscribe(
+                        res => this.dialogRef.close(),
+                        error => console.log(error)
+                    )
+                })
+            },
             error => this.errorMessage = <any>error
-        );
-            this.dialogRef.close();
+            );
         }, (error) => {
             return console.log(error);
         });
-        
-        
     }
 
     private getAuthors(): void {

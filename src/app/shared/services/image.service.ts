@@ -22,6 +22,7 @@ export class ImageService {
     private imagesUrl = 'http://localhost:3000/images';
     private authorsUrl = 'http://localhost:3000/authors';
     private albumsUrl = 'http://localhost:3000/albums';
+    private overlaysUrl = 'http://localhost:3000/overlays';
 
     private headers = new Headers({'Content-Type':
 'application/json'});
@@ -79,11 +80,10 @@ export class ImageService {
             var formData: any = new FormData();
             var xhr = new XMLHttpRequest();
             formData.append('upload', image, image.name);
-            var self = this;
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = () => {
                     if (xhr.readyState == 4) {
                         if (xhr.status == 200) {
-                            self.imageId = xhr.response;
+                            this.imageId = xhr.response;
                             resolve(JSON.parse(xhr.response));
                         } else {
                             reject(xhr.response);
@@ -96,6 +96,18 @@ export class ImageService {
             
     }
 
+    uploadOverlay(image: Image) {
+        const url = `${this.overlaysUrl}/uploadImage/image/${image._id}`;
+        const jsonBody = {
+            "latitude": image.latitude,
+            "longitude": image.longitude
+        };
+        return this.http.post(url, JSON.stringify(jsonBody), this.options)
+    .map(this.extractJsonData)
+    .catch(this.handleError);
+        
+    }
+
     generateKmlImage(image: Image): Observable<Response> {
         const url = `${this.imagesUrl}/generateKml`;
         const jsonBody = this.createBodyKml(image);
@@ -104,9 +116,17 @@ export class ImageService {
     .catch(this.handleError);
     }
 
-    saveMarkers(markers: marker[]): void {
-        this.imageMarkers = markers;
-        console.log(this.imageMarkers);
+    saveMarkers(image: Image, markers: marker[]) {
+        const url = `${this.overlaysUrl}/saveMarkers/image/${image._id}`;
+        const jsonBody = {
+            "markerDL": [markers[0].longitude, markers[0].latitude,],
+            "markerDR": [markers[1].longitude, markers[1].latitude,],
+            "markerUR": [markers[2].longitude, markers[2].latitude,],
+            "markerUL": [markers[3].longitude, markers[3].latitude,],
+        };
+        return this.http.post(url, JSON.stringify(jsonBody), this.options)
+    .map(this.extractJsonData)
+    .catch(this.handleError);
     }
 
     uploadAlbum(albumName: string) {
