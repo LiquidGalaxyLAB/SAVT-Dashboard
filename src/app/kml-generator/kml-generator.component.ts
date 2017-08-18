@@ -130,32 +130,39 @@ export class KmlGeneratorComponent implements OnInit {
                 duration: 4000
                 });
             }
-            else if (this.googleMap.imageMarkers.length != 4){
-                this.snackbar.open('Hey ! You must calibrate the image by placing 4 markerts on its corners', 'OK', {
-                duration: 4000
-                });
-            }
             else {
                 let dialogRef = this.dialog.open(DialogComponent);
                 dialogRef.afterClosed().subscribe(response => {
                     if (response === 'yes') {
                         // Generate KML
-                        this.busy = this.imageService.generateKmlImage(this.imageImporter.selectedImage)
-                        .subscribe(
-                        response => {
-                        if (response.toString() === 'OK'){
-                            this.snackbar.open('KML Generated !', 'OK', {
-                                duration: 2000
-                            });
-                        }
-                        else if (response.toString() === 'ERROR'){
-                            this.snackbar.open('There was an error generating the KML file :(', 'OK', {
-                                duration: 2000
-                            });
-                        }
-                        },
+                        this.imageService.getOverlayByImage(this.imageImporter.selectedImage._id).subscribe(
+                            overlay => {
+                                if (overlay[0].markerDL.length === 0){
+                                        this.snackbar.open('Hey ! You must calibrate the image by placing 4 markerts on its corners', 'OK', {
+                                        duration: 4000
+                                    });
+                                }
+                                else {
+                                    this.busy = this.imageService.generateKmlOverlay(overlay[0])
+                                    .subscribe(
+                                    response => {
+                                        if (response.toString() === 'OK'){
+                                            this.snackbar.open('KML Generated !', 'OK', {
+                                                duration: 2000
+                                            });
+                                        }
+                                        else if (response.toString() === 'ERROR'){
+                                            this.snackbar.open('There was an error generating the KML file :(', 'OK', {
+                                                duration: 2000
+                                            });
+                                    }
+                                    },
+                                        error => this.errorMessage = <any>error
+                                    );
+                                }
+                            },
                             error => this.errorMessage = <any>error
-                        );
+                        )
                     }
                 });
             }

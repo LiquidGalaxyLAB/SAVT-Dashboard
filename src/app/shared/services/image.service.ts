@@ -7,6 +7,7 @@ import { Image } from '../models/image';
 import { marker } from '../models/marker';
 import { Author } from '../models/author';
 import { Album } from '../models/album';
+import { Overlay } from '../models/overlay';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -75,6 +76,13 @@ export class ImageService {
     .catch(this.handleError);
     }
 
+    getOverlayByImage(imageId: string): Observable<Overlay> {
+        const url = `${this.overlaysUrl}/image/${imageId}`;
+        return this.http.get(url)
+    .map(this.extractJsonData)
+    .catch(this.handleError);
+    }
+
     uploadImage(image: File): Promise<any> {
         return new Promise((resolve, reject) => {
             var formData: any = new FormData();
@@ -108,9 +116,9 @@ export class ImageService {
         
     }
 
-    generateKmlImage(image: Image): Observable<Response> {
-        const url = `${this.imagesUrl}/generateKml`;
-        const jsonBody = this.createBodyKml(image);
+    generateKmlOverlay(overlay: Overlay): Observable<Response> {
+        const url = `${this.overlaysUrl}/generateKml`;
+        const jsonBody = this.createBodyKml(overlay);
         return this.http.post(url, jsonBody, this.options)
     .map(this.extractJsonData)
     .catch(this.handleError);
@@ -150,22 +158,28 @@ export class ImageService {
         return body[0] || { };
     }
 
-    private createBodyKml(image: Image): string {
+    private createBodyKml(overlay: Overlay): string {
         var jsonAux = {
             "name": "ImagesOverlayKml",
+            "corners": {
+                "down-left": overlay.markerDL,
+                "down-right": overlay.markerDR,
+                "up-right": overlay.markerUR,
+                "up-left": overlay.markerUL
+            },
+            "coordinates": {
+                "latitude": overlay.latitude,
+                "longitude": overlay.longitude
+            },
             "images": <any>[]
         };
-        var imageJson = {
-            "name": image.name,
-            "url": image.url,
-            "coords": {
-                "lower-left": [this.imageMarkers[0].longitude, this.imageMarkers[0].latitude],
-                "lower-right": [this.imageMarkers[1].longitude, this.imageMarkers[1].latitude],
-                "upper-right": [this.imageMarkers[2].longitude, this.imageMarkers[2].latitude],
-                "upper-left": [this.imageMarkers[3].longitude, this.imageMarkers[3].latitude]
-            }
-        };
-        jsonAux.images.push(imageJson)
+        overlay.images.forEach(image => {
+            var imageJson = {
+                "name": image.name,
+                "url": image.url,
+            };
+            jsonAux.images.push(imageJson)
+        });
         return JSON.stringify(jsonAux);
     }
 
