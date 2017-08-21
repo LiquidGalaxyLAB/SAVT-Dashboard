@@ -1,11 +1,25 @@
-:host {
+/* :host {
     flex: 1;
     padding-top: 56px;
 }
+*/
 
+.kml-generator-container {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.kml-generator-container .toolbar-container {
+    
+}
+
+/* 
 @media(min-width: 400px) {
     padding-top: 64px;
 }
+*/
 
 .generate-button {
     flex: auto; text-align: center;
@@ -16,7 +30,7 @@
 }
 
 .page-container {
-    height: 100%;
+    flex: 1;
     display: flex;
     flex-direction: row;
 }
@@ -33,8 +47,7 @@
 
 .sensors-container {
     flex: 1;
-    width: auto;
-    height: 100%;
+    overflow-y: auto;
 }
 
 div.items-container {

@@ -1,5 +1,13 @@
+.google-map-container {
+  height: 100%;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
 agm-map {
-  height: 90%;
+  flex: 1;
+  height: 100%;
 }
 
 .map-toolbar {

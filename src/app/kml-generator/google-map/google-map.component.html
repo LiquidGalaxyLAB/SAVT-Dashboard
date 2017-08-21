@@ -1,60 +1,62 @@
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-<agm-map 
-    [latitude]="latitude" 
-    [longitude]="longitude"
-    [zoom]="zoom"
-    [mapTypeId]="mapTypeId" 
-    (mapReady)="mapReady($event)"
-    (mapClick)="mapClicked($event)">
-    <agm-marker
-        *ngFor= "let marker of sensorsMarkers"
-        (markerClick)="markerClick(marker, $event)"
-        [latitude]="marker.latitude" 
-        [longitude]="marker.longitude"
-        [label]="marker.label"
-        [markerDraggable]="marker.draggable"
-        (dragEnd)="dragEnd(marker, $event)">
-    </agm-marker>
-    <agm-marker
-        *ngFor= "let marker of imageMarkers"
-        (markerClick)="markerClick(marker, $event)"
-        [iconUrl]="marker.iconUrl"
-        [latitude]="marker.latitude" 
-        [longitude]="marker.longitude"
-        [label]="marker.label"
-        [markerDraggable]="marker.draggable"
-        (dragEnd)="dragEnd(marker, $event)">
-    </agm-marker>
-    <canvas #myCanvas width="500" height="500">
-    </canvas>
-</agm-map>
+<div class="google-map-container">
+    <agm-map 
+        [latitude]="latitude" 
+        [longitude]="longitude"
+        [zoom]="zoom"
+        [mapTypeId]="mapTypeId" 
+        (mapReady)="mapReady($event)"
+        (mapClick)="mapClicked($event)">
+        <agm-marker
+            *ngFor= "let marker of sensorsMarkers"
+            (markerClick)="markerClick(marker, $event)"
+            [latitude]="marker.latitude" 
+            [longitude]="marker.longitude"
+            [label]="marker.label"
+            [markerDraggable]="marker.draggable"
+            (dragEnd)="dragEnd(marker, $event)">
+        </agm-marker>
+        <agm-marker
+            *ngFor= "let marker of imageMarkers"
+            (markerClick)="markerClick(marker, $event)"
+            [iconUrl]="marker.iconUrl"
+            [latitude]="marker.latitude" 
+            [longitude]="marker.longitude"
+            [label]="marker.label"
+            [markerDraggable]="marker.draggable"
+            (dragEnd)="dragEnd(marker, $event)">
+        </agm-marker>
+        <canvas #myCanvas width="500" height="500">
+        </canvas>
+    </agm-map>
 
-<md-toolbar color="primary" class="map-toolbar">
-    <div class="map-toolbar-right" *ngIf="selectedImage">
-        <button md-mini-fab (click)="rotateLeft()" color="warn">
-            <md-icon>rotate_left</md-icon>
-        </button>
-        <button md-mini-fab (click)="rotateRight()" color="warn">
-            <md-icon>rotate_right</md-icon>
-        </button>
-        <button md-mini-fab (click)="increaseWidth()" color="warn">
-            <md-icon>zoom_in</md-icon>
-        </button>
-        <button md-mini-fab (click)="decreaseWidth()" color="warn">
-            <md-icon>zoom_out</md-icon>
-        </button>
-        <button md-mini-fab (click)="increaseHeight()" color="warn">
-            <md-icon>zoom_in</md-icon>
-        </button>
-        <button md-mini-fab (click)="decreaseHeight()" color="warn">
-            <md-icon>zoom_out</md-icon>
-        </button>
-        <button md-mini-fab (click)="deleteOverlay()" color="warn">
-            <md-icon>cancel</md-icon>
-        </button>
-        <button md-mini-fab (click)="saveOverlay()" color="accent">
-            <md-icon>done</md-icon>
-        </button>
-    </div>
-</md-toolbar>
+    <md-toolbar color="primary" class="map-toolbar">
+        <div class="map-toolbar-right" *ngIf="selectedImage">
+            <button md-mini-fab (click)="rotateLeft()" color="warn">
+                <md-icon>rotate_left</md-icon>
+            </button>
+            <button md-mini-fab (click)="rotateRight()" color="warn">
+                <md-icon>rotate_right</md-icon>
+            </button>
+            <button md-mini-fab (click)="increaseWidth()" color="warn">
+                <md-icon>zoom_in</md-icon>
+            </button>
+            <button md-mini-fab (click)="decreaseWidth()" color="warn">
+                <md-icon>zoom_out</md-icon>
+            </button>
+            <button md-mini-fab (click)="increaseHeight()" color="warn">
+                <md-icon>zoom_in</md-icon>
+            </button>
+            <button md-mini-fab (click)="decreaseHeight()" color="warn">
+                <md-icon>zoom_out</md-icon>
+            </button>
+            <button md-mini-fab (click)="deleteOverlay()" color="warn">
+                <md-icon>cancel</md-icon>
+            </button>
+            <button md-mini-fab (click)="saveOverlay()" color="accent">
+                <md-icon>done</md-icon>
+            </button>
+        </div>
+    </md-toolbar>
+</div>

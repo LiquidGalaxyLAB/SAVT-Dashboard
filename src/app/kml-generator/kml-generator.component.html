@@ -1,45 +1,49 @@
-<md-toolbar color="primary">
-    <div class="generate-button">
-        <button md-raised-button (click)="generateKml()" color="warn">
-            <b>Generate KML</b>
-        </button>
-    </div>
-</md-toolbar>
-<div class="page-container">
-    <div class="map-container">
-      <div [ngBusy]="busy"></div>
-      <google-map #googleMap (onClean)="onClean($event)"></google-map>          
-    </div>
-    <div class="data-container">
-        <div class="sensors-container">
-            <div class="items-container" *ngIf="viewFlags.fieldsView">
-                <div class="item-card" *ngFor="let field of fields" (click)="viewSensors(field)">
-                    <div class="item-title">
-                        {{ field.name }}
-                    </div>
-                    <div class="item-caption">
-                        {{ field.description }}
-                    </div>
-                </div>
+<div class="kml-generator-container">
+    <div class="toolbar-container">
+        <md-toolbar color="primary">
+            <div class="generate-button">
+                <button md-raised-button (click)="generateKml()" color="warn">
+                    <b>Generate KML</b>
+                </button>
             </div>
-            <div class="items-container" *ngIf="viewFlags.sensorsView">
-                <div class="item-card" *ngFor="let sensor of sensors" (click)="goToDetail(sensor)">
-                    <div class="item-title">
-                        {{ sensor.name }}
-                    </div>
-                    <div class="item-caption">
-                        {{ sensor.description }}
-                    </div>
-                </div>
-                <div class="back-button-container">
-                    <button md-mini-fab (click)="selectView('fieldsView')" color="warn">
-                        <md-icon>subdirectory_arrow_left</md-icon>
-                    </button>
-                </div>
-            </div>
+        </md-toolbar>
+    </div>
+    <div class="page-container">
+        <div class="map-container">
+            <div [ngBusy]="busy"></div>
+            <google-map #googleMap (onClean)="onClean($event)"></google-map>          
         </div>
-        <div class="images-container">
-            <image-importer #imageImporter></image-importer>
+        <div class="data-container">
+            <div class="sensors-container">
+                <div class="items-container" *ngIf="viewFlags.fieldsView">
+                    <div class="item-card" *ngFor="let field of fields" (click)="viewSensors(field)">
+                        <div class="item-title">
+                            {{ field.name }}
+                        </div>
+                        <div class="item-caption">
+                            {{ field.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="items-container" *ngIf="viewFlags.sensorsView">
+                    <div class="item-card" *ngFor="let sensor of sensors" (click)="goToDetail(sensor)">
+                        <div class="item-title">
+                            {{ sensor.name }}
+                        </div>
+                        <div class="item-caption">
+                            {{ sensor.description }}
+                        </div>
+                    </div>
+                    <div class="back-button-container">
+                        <button md-mini-fab (click)="selectView('fieldsView')" color="warn">
+                            <md-icon>subdirectory_arrow_left</md-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="images-container">
+                <image-importer #imageImporter></image-importer>
+            </div>
         </div>
     </div>
 </div>

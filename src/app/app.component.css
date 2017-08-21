@@ -1,3 +1,14 @@
-.router-outlet-container {
-    height: 100vh;
+.app-component-container {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-component-container .toolbar-container {
+
+}
+
+.app-component-container .router-outlet-container {
+    flex: 1;
 }

@@ -1,9 +1,11 @@
 <div class="image-importer-container">
-    <md-toolbar color="primary" class="image-toolbar">
-        <button md-fab (click)="openUploadDialog()" color="warn">
-            <md-icon>add_a_photo</md-icon>
-        </button>
-    </md-toolbar>
+    <div class="toolbar-container">
+        <md-toolbar color="primary" class="image-toolbar">
+            <button md-fab (click)="openUploadDialog()" color="warn">
+                <md-icon>add_a_photo</md-icon>
+            </button>
+        </md-toolbar>
+    </div>
     <div class="carousel">
         <div class="cards-container" *ngIf="viewFlags.authorsView">
             <div class="image-card" *ngFor="let author of authors" (click)="viewAlbums(author)">

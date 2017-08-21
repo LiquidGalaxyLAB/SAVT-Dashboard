@@ -1,15 +1,20 @@
 .image-importer-container {
     height: 100%;
     width: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .back-button-container {
     text-align: center;
 }
 
+.toolbar-container {
+    
+}
+
 .carousel {
-    width: auto;
-    height: 100%;
+    flex: 1;
 }
 
 .cards-container {
