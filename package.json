@@ -1,7 +1,7 @@
 {
-  "name": "angular-quickstart",
+  "name": "savt-dashboard",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "Smart Agro Visualization Tool Project's Browser Client",
   "scripts": {
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
@@ -26,6 +26,7 @@
   "dependencies": {
     "@agm/core": "^1.0.0-beta.0",
     "@angular/animations": "^4.2.4",
+    "@angular/cdk": "^2.0.0-beta.7",
     "@angular/common": "^4.2.4",
     "@angular/compiler": "^4.2.4",
     "@angular/core": "^4.2.4",
@@ -40,7 +41,7 @@
     "chart.js": "^2.6.0",
     "core-js": "^2.4.1",
     "ng2-charts": "^1.6.0",
-    "rxjs": "5.0.1",
+    "rxjs": "5.4.2",
     "socket.io-client": "^2.0.3",
     "systemjs": "^0.20.14",
     "zone.js": "^0.8.4"
