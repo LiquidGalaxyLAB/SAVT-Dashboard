@@ -5,14 +5,19 @@ import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Sensor } from '../models/sensor';
 import { Field } from '../models/field';
 
+import { appConfig } from '../environments/config';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SensorService {
-    private sensorsUrl = 'http://localhost:3000/sensors';
-    private fieldsUrl = 'http://localhost:3000/fields';
+
+    private sensorsUrl = `${appConfig.publicApiEndpoint}/sensors`;
+    private fieldsUrl = `${appConfig.publicApiEndpoint}/fields`;
+    private kmlsUrl = `${appConfig.localApiEndpoint}/kmls`;
+
     private headers = new Headers({'Content-Type':
 'application/json'});
     private options = new RequestOptions({ headers: this.headers });
@@ -52,7 +57,7 @@ export class SensorService {
     }
 */
     generateKmlSensors(sensors: Sensor[]): Observable<Response> {
-        const url = `${this.sensorsUrl}/kml/generateKml`;
+        const url = `${this.kmlsUrl}/sensors`;
         const jsonBody = this.createBodyKml(sensors);
         return this.http.post(url, jsonBody, this.options)
     .map(this.extractSensorsData)

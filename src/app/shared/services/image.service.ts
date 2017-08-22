@@ -9,6 +9,8 @@ import { Author } from '../models/author';
 import { Album } from '../models/album';
 import { Overlay } from '../models/overlay';
 
+import { appConfig } from '../environments/config';
+
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
@@ -20,10 +22,11 @@ export class ImageService {
     observableSubject$ = this.mapSubject.asObservable();
     private image: Image;
 
-    private imagesUrl = 'http://localhost:3000/images';
-    private authorsUrl = 'http://localhost:3000/authors';
-    private albumsUrl = 'http://localhost:3000/albums';
-    private overlaysUrl = 'http://localhost:3000/overlays';
+    private imagesUrl = `${appConfig.publicApiEndpoint}/images`;
+    private authorsUrl = `${appConfig.publicApiEndpoint}/authors`;
+    private albumsUrl = `${appConfig.publicApiEndpoint}/albums`;
+    private overlaysUrl = `${appConfig.publicApiEndpoint}/overlays`;
+    private kmlsUrl = `${appConfig.localApiEndpoint}/kmls`;
 
     private headers = new Headers({'Content-Type':
 'application/json'});
@@ -117,7 +120,7 @@ export class ImageService {
     }
 
     generateKmlOverlay(overlay: Overlay): Observable<Response> {
-        const url = `${this.overlaysUrl}/generateKml`;
+        const url = `${this.kmlsUrl}/overlays`;
         const jsonBody = this.createBodyKml(overlay);
         return this.http.post(url, jsonBody, this.options)
     .map(this.extractJsonData)
