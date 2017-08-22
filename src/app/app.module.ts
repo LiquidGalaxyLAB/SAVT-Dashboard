@@ -12,6 +12,7 @@ import { KmlGeneratorModule } from './kml-generator/kml-generator.module';
 import { GraphsPageModule } from './graphs-page/graphs-page.module';
 import { SensorsPageModule } from './sensors-page/sensors-page.module';
 import { SensorDetailModule } from './sensor-detail/sensor-detail.module';
+import { DemosPageModule } from './demos-page/demos-page.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     GraphsPageModule,
     SensorsPageModule,
     SensorDetailModule,
+    DemosPageModule
   ],
   declarations: [ 
     AppComponent,

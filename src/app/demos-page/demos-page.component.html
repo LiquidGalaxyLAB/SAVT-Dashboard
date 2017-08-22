@@ -1,0 +1,27 @@
+<div class="demo-page-container">
+    <div [ngBusy]="busy"></div>
+    <span class="span-left"></span>
+    <div class="buttons-container">
+        <div class="button-container">
+            <button md-raised-button (click)="demoSensors()" color="primary">
+                Play Sensors Demo
+            </button>
+            <p>Plays a demo tour traveling through various fake sensors showing 
+                all possible measured magnitudes implemented on the api server.</p>
+        </div>
+        <div class="button-container">
+            <button md-raised-button (click)="demoOverlays()" color="primary">
+                Play Drone Images Demo
+            </button>
+            <p>Plays a demo tour of an overlay with various layers of fake 
+                processed photos.</p>
+        </div>
+        <div class="button-container">
+            <button md-raised-button (click)="stopDemo()" color="warn">
+                Stop Demo
+            </button>
+            <p>Stops the current demo</p>
+        </div>
+    </div>
+    <span class="span-right"></span>
+</div>

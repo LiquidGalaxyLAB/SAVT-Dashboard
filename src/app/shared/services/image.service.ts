@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 
 import { Image } from '../models/image';
