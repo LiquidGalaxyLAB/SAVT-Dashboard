@@ -33,4 +33,8 @@ export class SidenavComponent implements OnInit {
         this.sidenavService.closeSidenav();
         //this.router.navigate(['/about']);
     }
+
+    goToDemos() {
+        this.router.navigate(['/demos']);
+    }
 }
