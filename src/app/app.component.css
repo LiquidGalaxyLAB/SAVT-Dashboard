@@ -1,14 +1,24 @@
 .app-component-container {
     height: 100%;
     width: auto;
+}
+
+md-sidenav-container {
+    height: 100%;
+    width: auto;
+}
+
+.content-container {
+    height: 100%;
+    width: auto;
     display: flex;
     flex-direction: column;
 }
 
-.app-component-container .toolbar-container {
-
+.sidenav-menu {
+    padding: 0;
 }
 
-.app-component-container .router-outlet-container {
+.router-outlet-container {
     flex: 1;
 }

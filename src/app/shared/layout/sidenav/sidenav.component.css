@@ -2,8 +2,25 @@
     height: 100%;
     width: auto;
     overflow: hidden;
-    padding: 5px;
     background: #009688;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: rgba(0, 0, 0, 0.12);
+}
+
+.sidenav-menu md-nav-list {
+    padding-top: 0;
+}
+
+.image-container {
+    height: 64px;
+    width: auto;
+    text-align: center;
+}
+
+.image-container img {
+    height: 100%;
+    width: auto;
 }
 
 md-list-item span{

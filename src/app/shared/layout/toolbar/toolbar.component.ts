@@ -18,7 +18,7 @@ export class ToolbarComponent implements OnInit {
      ) { }
 
     ngOnInit() {
-        this.sidenavOpened = false;
+        this.sidenavOpened = true;
      }
 
     sidenavButton(): void {

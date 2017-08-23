@@ -23,12 +23,10 @@ export class SidenavComponent implements OnInit {
     }
 
     goToImages() {
-        this.sidenavService.closeSidenav();
-        //this.router.navigate(['/images']);
+        this.router.navigate(['/gallery']);
     }
 
     goToKmlGenerator() {
-        this.sidenavService.closeSidenav();
         this.router.navigate(['/']);
     }
 

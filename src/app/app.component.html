@@ -1,12 +1,17 @@
-<div class="app-component-container">
-    <div class="toolbar-container">
-        <toolbar></toolbar>
+<md-sidenav-container>
+    <md-sidenav #sidenav mode="side" opened="true">
+        <sidenav></sidenav>
+    </md-sidenav>
+    <div class="content-container">
+        <div class="toolbar-container">
+            <toolbar></toolbar>
+        </div>
+        <div class="router-outlet-container">
+            <router-outlet></router-outlet>
+        </div>
     </div>
-    <div class="router-outlet-container">
-        <router-outlet></router-outlet>
-    </div>
+</md-sidenav-container>
     <!-- <my-footer></my-footer> -->
-</div>
 <!--
 <md-sidenav-container class="router-outlet-container">
     <md-sidenav #sidenav mode="side" opened="true" class="example-sidenav" style="overflow-y:hidden; border-top: 1px solid green; border-bottom: 1px solid green;">
