@@ -10,6 +10,12 @@
     font-family: sans-serif;
 }
 
+.outerContainer button {
+    background-color: transparent;
+    box-shadow: none;
+    color: white;
+}
+
 .imageContainer {
     position: absolute;
     float: none;

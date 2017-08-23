@@ -18,7 +18,6 @@ export class SidenavComponent implements OnInit {
     ngOnInit() { }
 
     goToSensors() {
-        this.sidenavService.closeSidenav();
         this.router.navigate(['/sensors']);
     }
 

@@ -1,8 +1,215 @@
-<div class="page-container">
-    <div class="grid">
-        <div class="chart-container"
-        *ngFor="let magnitude of magnitudes">
-            <bar-chart [magnitude]="magnitude"></bar-chart>
+<div class="sensors-page-container">
+    <!--
+    <div class="summary-container">
+        <div class="summary-sensors">
+            <div class="summary-title">
+                Sensors
+            </div>
+            <div class="summary-content">
+                <div class="available-container">
+                    <div class="summary-subtitle available">
+                        Available
+                    </div>
+                    <div class="column-content">
+                        <div *ngFor="let availableSensor of availableSensors" class="column-item">
+                            {{ availableSensor }}
+                        </div>
+                    </div>
+                </div>
+                <div class="unavailable-container">
+                    <div class="summary-subtitle unavailable">
+                        Unavailable
+                    </div>
+                    <div class="column-content">
+                        <div *ngFor="let unavailableSensor of unavailableSensors" class="column-item">
+                            {{ unavailableSensor }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="summary-attributes">
+            <div class="summary-title">
+                Magnitudes
+            </div>
+            <div class="summary-content">
+                <div class="available-container">
+                    <div class="summary-subtitle available">
+                        Available
+                    </div>
+                    <div class="column-content">
+                        <div *ngFor="let availableMagnitude of availableMagnitudes" class="column-item">
+                            {{ availableMagnitude }}
+                        </div>
+                    </div>
+                </div>
+                <div class="unavailable-container">
+                    <div class="summary-subtitle unavailable">
+                        Unavailable
+                    </div>
+                    <div class="column-content">
+                        <div *ngFor="let unavailableMagnitude of unavailableMagnitudes" class="column-item">
+                            {{ unavailableMagnitude }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <div class="data-container">
+        <div class="view-container" *ngIf="viewFlags.fieldsView">
+            <div class="title">Choose a field:</div>
+            <div class="items-container">
+                <div class="item-card" *ngFor="let field of fields" (click)="viewSensors(field)">
+                    <div class="item-title">
+                        {{ field.name }}
+                    </div>
+                    <div class="item-caption">
+                        {{ field.description }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-container" *ngIf="viewFlags.sensorsView">
+            <div class="title">{{ fieldSelected.name }} selected. Now choose a sensor:</div>
+            <div class="items-container">
+                <div class="item-card" *ngFor="let sensor of sensors" (click)="goToDetail(sensor)">
+                    <div class="item-title">
+                        {{ sensor.name }}
+                    </div>
+                    <div class="item-caption">
+                        {{ sensor.description }}
+                    </div>
+                </div>
+            </div>
+            <div class="back-button-container">
+                <button md-fab (click)="selectView('fieldsView')" color="warn">
+                    <md-icon>subdirectory_arrow_left</md-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="data-detail-container">
+        <div *ngIf="sensorSelected" class="detail-container">
+            <div class="summary-title">
+                {{ sensorSelected.name }}
+            </div>
+            <div class="summary-subtitle detail">
+                Location
+            </div>
+            <div class="location-container">
+                <div class="location-item">
+                    Latitude: {{ sensorSelected.locationLatitude }}
+                </div>
+                <div class="location-item">
+                    Longitude: {{ sensorSelected.locationLongitude }}
+                </div>
+            </div>
+            <div class="summary-subtitle detail">
+                Magnitudes
+            </div>
+            <div class="magnitudes-container">
+                <!--<div *ngFor="let sensorSelectedMagnitude of sensorSelectedMagnitudes" class="magnitude-item">
+                    {{ sensorSelectedMagnitude.name }}: {{ sensorSelectedMagnitude.value }}
+                </div>-->
+                <div *ngIf="sensorSelected.valueAirTemperature" class="magnitude-item">
+                    Air Temperature
+                    <div class="value">
+                        {{ sensorSelected.valueAirTemperature }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueAirHumidity" class="magnitude-item">
+                    Air Humidity
+                    <div class="value">
+                        {{ sensorSelected.valueAirHumidity }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueAirPressure" class="magnitude-item">
+                    Air Pressure
+                    <div class="value">
+                        {{ sensorSelected.valueAirPressure }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueSoilTemperature" class="magnitude-item">
+                    Soil Temperature
+                    <div class="value">
+                        {{ sensorSelected.valueSoilTemperature }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueLeafWetness" class="magnitude-item">
+                    Leaf Wetness
+                    <div class="value">
+                        {{ sensorSelected.valueLeafWetness }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueAtmosphericPressure" class="magnitude-item">
+                    Atmospheric Pressure
+                    <div class="value">
+                        {{ sensorSelected.valueAtmosphericPressure }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueSolarRadiation" class="magnitude-item">
+                    Solar Radiation
+                    <div class="value">
+                        {{ sensorSelected.valueSolarRadiation }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueUltravioletRadiation" class="magnitude-item">
+                    Ultraviolet Radiation
+                    <div class="value">
+                        {{ sensorSelected.valueUltravioletRadiation }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueTrunkDiameter" class="magnitude-item">
+                    Trunk Diameter
+                    <div class="value">
+                        {{ sensorSelected.valueTrunkDiameter }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueStemDiameter" class="magnitude-item">
+                    Stem Diameter
+                    <div class="value">
+                        {{ sensorSelected.valueStemDiameter }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueFruitDiameter" class="magnitude-item">
+                   Fruit Diameter
+                   <div class="value">
+                       {{ sensorSelected.valueFruitDiameter }}
+                   </div>
+                </div>
+                <div *ngIf="sensorSelected.valueAnemometer" class="magnitude-item">
+                    Anemometer
+                    <div class="value">
+                        {{ sensorSelected.valueAnemometer }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueWindVane" class="magnitude-item">
+                    Wind Vane
+                    <div class="value">
+                        {{ sensorSelected.valueWindVane }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valuePluviometer" class="magnitude-item">
+                    Pluviometer
+                    <div class="value">
+                        {{ sensorSelected.valuePluviometer }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueLuminosity" class="magnitude-item">
+                    Luminosity
+                    <div class="value">
+                        {{ sensorSelected.valueLuminosity }}
+                    </div>
+                </div>
+                <div *ngIf="sensorSelected.valueUltrasound" class="magnitude-item">
+                    Ultrasound
+                    <div class="value">
+                        {{ sensorSelected.valueUltrasound }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -36,7 +36,7 @@ export class KmlGeneratorComponent implements OnInit {
     viewFlags = {
         "fieldsView": false,
         "sensorsView": false
-    }
+    };
 
     busy: Subscription;
     

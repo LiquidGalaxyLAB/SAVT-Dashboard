@@ -1,8 +1,181 @@
-:host {
-    flex: 1;
+.sensors-page-container {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-.page-container {
-    height: auto;
-    width: 700px;
-}   
+.sensors-page-container .summary-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.summary-container .summary-sensors {
+    flex: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-container .summary-attributes {
+    flex: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-title {
+    margin-top: 1em;
+    font-family: 'Roboto', serif;
+    font-size: 2em;
+    color: #009688;
+}
+
+.summary-subtitle {
+    font-family: 'Roboto', serif;
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: lighter;
+    padding: 0.5em;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+}
+
+.summary-subtitle.available {
+    color: #009688;
+}
+
+.summary-subtitle.unavailable {
+    color: #ff9800;
+}
+
+.summary-subtitle.detail {
+    color: black;
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 1em;
+}
+
+.column-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.column-item {
+    font-family: 'Roboto', serif;
+    font-weight: lighter;
+    margin: 0.5em;
+}
+
+.sensors-page-container .data-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.view-container .title {
+    font-family: 'Roboto', serif;
+    font-weight: lighter;
+    margin: 0.5em;
+    text-align: center;
+    font-size: 2em;
+}
+
+.data-container .items-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.item-card {
+    height: 100%;
+    width: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    cursor: pointer;
+    margin: 0.5em;
+}
+
+.item-card:hover {
+    background-color: #009688;
+    color: white;
+}
+
+.item-card .item-title {
+    padding: 15px;
+    font-family: 'Roboto', serif;
+    font-size: 1.5em;
+}
+
+.item-card .item-caption {
+    font-family: 'Roboto', serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.back-button-container {
+    text-align: center;
+}
+
+.data-detail-container .detail-container {
+    align-self: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-container .location-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1em;
+}
+
+.location-container .location-item {
+    font-family: 'Roboto', serif;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.detail-container .magnitudes-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.magnitudes-container .magnitude-item {
+    font-family: 'Roboto', serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding: 2em;
+    background-color: lightgrey;
+    margin: 0.25em;
+}
+
+.magnitude-item .value {
+    font-style: bold;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: 0.5em;
+}
