@@ -35,7 +35,8 @@
       "ng2-charts": "node_modules/ng2-charts",
       "chart.js": "node_modules/chart.js/dist",
       "@agm/core": "node_modules/@agm/core/core.umd.js",
-      'angular2-busy': 'npm:angular2-busy'
+      'angular2-busy': 'npm:angular2-busy',
+      'hammerjs': 'npm:hammerjs/hammer.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

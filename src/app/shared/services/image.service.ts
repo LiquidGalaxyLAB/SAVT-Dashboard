@@ -34,6 +34,17 @@ export class ImageService {
     private imageMarkers: marker[];
     private imageId: string;
 
+    /* The next code is imported from BenjaminBrandmeier's angular2-image-gallery project:
+    https://github.com/BenjaminBrandmeier/angular2-image-gallery
+    */
+    private imagesUpdatedSource = new Subject<any[]>()
+    private imageSelectedIndexUpdatedSource = new Subject<number>()
+    private showImageViewerSource = new Subject<boolean>()
+
+    imagesUpdated$ : Observable<any[]> = this.imagesUpdatedSource.asObservable()
+    imageSelectedIndexUpdated$ : Observable<number> = this.imageSelectedIndexUpdatedSource.asObservable()
+    showImageViewerChanged$ : Observable<boolean> = this.showImageViewerSource.asObservable()
+
     constructor(private http: Http) { }
 
     addImageOverlay(image: Image) {
@@ -197,6 +208,22 @@ export class ImageService {
         }
             console.error(errMsg);
             return Observable.throw(errMsg);
+    }
+
+    /* The next code is imported from BenjaminBrandmeier's angular2-image-gallery project:
+    https://github.com/BenjaminBrandmeier/angular2-image-gallery
+    */
+
+    updateImages(images: any[]) {
+        this.imagesUpdatedSource.next(images)
+    }
+
+    updateSelectedImageIndex(newIndex: number) {
+        this.imageSelectedIndexUpdatedSource.next(newIndex)
+    }
+
+    showImageViewer(show: boolean) {
+        this.showImageViewerSource.next(show)
     }
 
 }

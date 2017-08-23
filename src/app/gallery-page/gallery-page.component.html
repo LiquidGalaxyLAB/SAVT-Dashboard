@@ -1,0 +1,13 @@
+<div class="gallery-container">
+    <!-- Image Gallery Grid -->
+    <div class="grid">
+        <div class="img-container"
+            *ngFor="let image of images">
+            <img class="img-class" (click)="openImageViewer(image)" 
+            src="{{image.url}}">
+        </div>
+    </div>
+
+    <!-- Image modal -->
+    <modal-viewer #modalViewer></modal-viewer>
+</div>

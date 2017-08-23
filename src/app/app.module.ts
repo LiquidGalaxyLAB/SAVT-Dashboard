@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { JsonpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '@angular/material';
+import 'hammerjs';
 
 import { AppComponent }  from './app.component';
 
@@ -13,6 +14,7 @@ import { GraphsPageModule } from './graphs-page/graphs-page.module';
 import { SensorsPageModule } from './sensors-page/sensors-page.module';
 import { SensorDetailModule } from './sensor-detail/sensor-detail.module';
 import { DemosPageModule } from './demos-page/demos-page.module';
+import { GalleryPageModule } from './gallery-page/gallery-page.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,7 +33,8 @@ import { AppRoutingModule } from './app-routing.module';
     GraphsPageModule,
     SensorsPageModule,
     SensorDetailModule,
-    DemosPageModule
+    DemosPageModule,
+    GalleryPageModule
   ],
   declarations: [ 
     AppComponent,

@@ -1,0 +1,96 @@
+.outerContainer {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.95);
+    font-family: sans-serif;
+}
+
+.imageContainer {
+    position: absolute;
+    float: none;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.imageContainer .image,
+.imageContainer .preloading-image
+{
+    visibility: hidden;
+}
+
+.imageContainer .image.active {
+    position: absolute;
+    visibility: visible;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: auto auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 50%;
+    width: auto;
+    opacity: 1.0;
+}
+
+.arrow {
+    opacity: 0.0;
+}
+
+.outerContainer:hover .arrow.activeArrow {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    z-index: 1;
+    opacity: 1.0;
+    transition: all ease-out 0.5s;
+}
+
+.arrow.left {
+    left: 4vw;
+}
+
+.arrow.right {
+    right: 4vw;
+}
+
+.buttonContainer {
+    position: absolute;
+    top: 4vw;
+    right: 4vw;
+    text-align: center;
+    opacity: 1.0;
+    z-index: 200;
+    transition: all ease-out 0.5s;
+}
+
+.buttonContainer button {
+    background-color: transparent;
+    box-shadow: none;
+    color: white;
+}
+
+.captionContainer {
+    visibility: hidden;
+}
+
+.captionContainer.active {
+    visibility: visible;
+    position: absolute;
+    top: 6vw;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+}

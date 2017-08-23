@@ -1,0 +1,45 @@
+<div class="outerContainer" (window:resize)="onResize($event)"
+ *ngIf="showViewer" [@showViewerTransition]="showViewer">
+    <button md-fab color="primary" 
+     [ngClass]="{'activeArrow': leftArrowActive}" class="arrow left"
+     [hidden]="!leftArrowVisible" (click)="navigate(-1)"
+     [@arrowTransitionLeft]="moveArrow">
+        <md-icon>arrow_back</md-icon>
+    </button>
+    <button md-fab color="primary" 
+     [ngClass]="{'activeArrow': rightArrowActive}" class="arrow right"
+     [hidden]="!rightArrowVisible" (click)="navigate(1)"
+     [@arrowTransitionRight]="moveArrow">
+        <md-icon>arrow_forward</md-icon>
+    </button>
+    <div class="buttonContainer">
+        <button md-fab (click)="closeViewer()"><md-icon>close</md-icon></button>
+    </div>
+        <div class="imageContainer"
+         (swipeleft)="navigate(1, $event)"
+         (swiperight)="navigate(-1, $event)"
+         (pan)="pan($event)">
+
+            <div *ngFor='let img of images; let j = index'
+                class="image"
+                (dblclick)="imageClick(img)"
+                [class.active]="img['active']"
+                [@imageTransition]="img['transition']"
+                [style.background-image]="img['viewerImageLoaded'] ? 'url('+img['url']+')' : Math.abs(currentIdx-j) <=1 ? 'url('+img['url']+')' : ''"
+                [style.left]="transform+'px'"></div>
+
+            <img *ngFor='let img of images; let j = index'
+                class="preloading-image"
+                (load)="imageLoaded(img)"
+                [src]="Math.abs(currentIdx-j) <=1 ? img['url'] : ''"/>
+            
+                <div *ngIf="showImageTitle">
+                    <div *ngFor='let img of images; let j = index'
+                        class="captionContainer"
+                        [class.active]="img['active']"
+                        (load)="imageLoaded(img)">
+                        <h1 class="mat-display-1">{{img.name}}</h1>
+                    </div>
+                </div>
+    </div>
+</div>
