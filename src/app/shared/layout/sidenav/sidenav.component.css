@@ -10,6 +10,10 @@
 
 .sidenav-menu md-nav-list {
     padding-top: 0;
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .image-container {
@@ -25,4 +29,21 @@
 
 md-list-item span{
     color: white;
+}
+
+.space-span {
+    flex: 1;
+}
+
+.sidenav-bot-container {
+    color: white;
+    font-size: 16px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75em;
+}
+
+.sidenav-bot-container span, .sidenav-bot-container a {
+    text-align: center;
 }
