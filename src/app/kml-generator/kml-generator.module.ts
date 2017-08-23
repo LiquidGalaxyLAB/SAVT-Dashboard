@@ -10,7 +10,6 @@ import { ImageImporterComponent } from './image-importer/image-importer.componen
 
 import { KmlGeneratorRoutingModule } from './kml-generator.routing.module';
 import { DialogModule } from './dialog/dialog.module';
-import { DialogImageUploadModule } from './dialog-image-upload/dialog-image-upload.module';
 import { GoogleMapModule } from './google-map/google-map.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -24,7 +23,6 @@ import { SharedModule } from '../shared/shared.module';
         BusyModule,
         KmlGeneratorRoutingModule,
         DialogModule,
-        DialogImageUploadModule,
         GoogleMapModule,
         SharedModule,
     ],

@@ -7,6 +7,8 @@ import { MdIconModule } from '@angular/material';
 import { GalleryPageComponent } from './gallery-page.component';
 import { ModalViewerComponent } from './modal-viewer/modal-viewer.component';
 
+import { DialogImageUploadModule } from './dialog-image-upload/dialog-image-upload.module';
+
 import { GalleryPageRoutingModule } from './gallery-page.routing.module';
 
 @NgModule({
@@ -15,6 +17,7 @@ import { GalleryPageRoutingModule } from './gallery-page.routing.module';
         CommonModule,
         MdButtonModule,
         MdIconModule,
+        DialogImageUploadModule,
         GalleryPageRoutingModule
     ],
     exports: [],

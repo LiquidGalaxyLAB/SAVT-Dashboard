@@ -1,3 +1,99 @@
+.gallery-container {
+  height: 100%;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.back-button-container {
+    text-align: center;
+}
+
+.title {
+  text-align: center;
+  font-family: 'Roboto', serif;
+  font-style: italic;
+  font-weight: lighter;
+  padding: 1em;
+  font-size: 2em;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+div.author-card {
+    width: 60%;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    cursor: pointer;
+    margin: 0.5em;
+}
+
+div.author-card img {
+    width:50%;
+}
+
+div.author-card:hover .caption{
+    background-color: #009688;
+    color: white;
+}
+
+div.caption {
+  padding: 10px;
+  font-family: 'Roboto', serif;
+  font-size: 2em;
+}
+
+div.description {
+  padding: 10px;
+  font-family: 'Roboto', serif;
+  font-style: italic;
+  font-size: 1em;
+}
+
+div.items-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+div.item-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    cursor: pointer;
+    margin: 0.5em;
+}
+
+div.item-card:hover {
+    background-color: #009688;
+    color: white;
+}
+
+div.item-card .item-title {
+    padding: 15px;
+    font-family: 'Roboto', serif;
+    font-size: 1.5em;
+}
+
+div.item-card .item-caption {
+    font-family: 'Roboto', serif;
+    font-style: italic;
+    font-weight: lighter;
+    padding-bottom: 15px;
+}
+
+
 .grid{
   display: flex;
   justify-content: center;

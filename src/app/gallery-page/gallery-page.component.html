@@ -1,13 +1,60 @@
 <div class="gallery-container">
-    <!-- Image Gallery Grid -->
-    <div class="grid">
-        <div class="img-container"
-            *ngFor="let image of images">
-            <img class="img-class" (click)="openImageViewer(image)" 
-            src="{{image.url}}">
+    <div class="button-container">
+        <button md-fab (click)="openUploadDialog()" color="warn">
+            <md-icon>add_a_photo</md-icon>
+        </button>
+    </div>
+    <div class="carousel">
+        <div class="cards-container" *ngIf="viewFlags.authorsView">
+            <div class="author-card" *ngFor="let author of authors" (click)="viewAlbums(author)">
+                <img src="{{author.logoUrl}}">
+                <div class="caption">
+                    {{author.name}}
+                </div>
+                <div class="description">
+                    {{author.description}}
+                </div>
+            </div>
+        </div>
+        <div class="view-albums-container" *ngIf="viewFlags.albumsView">
+            <div class="title">
+                Author:<br>{{ selectedAuthor.name }}
+            </div>
+            <div class="items-container">
+                <div class="item-card" *ngFor="let album of albums" (click)="viewImages(album)">
+                    <div class="item-title">
+                        {{ album.name }}
+                    </div>
+                    <div class="item-caption">
+                        {{ album.description }}
+                    </div>
+                </div>
+            </div>
+            <div class="back-button-container">
+                <button md-fab (click)="selectView('authorsView')" color="warn">
+                    <md-icon>subdirectory_arrow_left</md-icon>
+                </button>
+            </div>
+        </div>
+        <div class="image-gallery-container" *ngIf="viewFlags.imagesView">
+            <div class="title">
+                Album:<br>{{ selectedAlbum.name }}
+            </div>
+            <!-- Image Gallery Grid -->
+            <div class="grid">
+                <div class="img-container"
+                    *ngFor="let image of images">
+                    <img class="img-class" (click)="openImageViewer(image)" 
+                    src="{{image.url}}">
+                </div>
+            </div>
+            <div class="back-button-container">
+                <button md-fab (click)="selectView('albumsView')" color="warn">
+                    <md-icon>subdirectory_arrow_left</md-icon>
+                </button>
+            </div>
         </div>
     </div>
-
     <!-- Image modal -->
     <modal-viewer #modalViewer></modal-viewer>
 </div>
