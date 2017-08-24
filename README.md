@@ -57,7 +57,7 @@ SAVT-Dashboard has been created thanks to the code of the projects:
 Readme based on **wearehive**'s [project-guidelines](https://github.com/wearehive/project-guidelines)
 
 ### Google Summer of Code
-GSOC info explained [here](https://github.com/calv00/SAVT-Dashboard/blob/master/docs/README.md).
+GSOC info explained [here](https://github.com/calv00/SAVT-Dashboard/blob/master/docs/GSOC17.md).
 
 ## Issues
 Feel free to open an [issue](https://github.com/calv00/SAVT-Dashboard/issues) of any error you find in the project. 
