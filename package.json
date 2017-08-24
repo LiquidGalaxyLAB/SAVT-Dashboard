@@ -21,7 +21,7 @@
     "lint": "tslint ./src/**/*.ts -t verbose"
   },
   "keywords": [],
-  "author": "",
+  "author": "Javier Calvo García",
   "license": "MIT",
   "dependencies": {
     "@agm/core": "^1.0.0-beta.0",
