@@ -16,6 +16,23 @@ git clone git@github.com:calv00/SAVT-Dashboard.git
 cd dashboardproject
 sudo npm install
 ```
+SAVT-Dashboard is prepared to get its data from a public server (**sensor-api**), and send orders to a local server(**kml-server**) to deploy information on Liquid Galaxy. These two servers are located in [SmartAgroVisualizationTool](https://github.com/calv00/SmartAgroVisualizationTool) repository. To accomplish this, its necessary to add the addresses (with its ports) to the file [*src/app/shared/environments/config.ts*](https://github.com/calv00/SAVT-Dashboard/blob/master/src/app/shared/environments/config.ts) :
+```
+export class appConfig {
+
+    // publicApiEndpoint is the address of the sensor-api endpoint server
+    public static publicApiEndpoint = 'YOUR_PUBLIC_API_ENDPOINT_ADDRESS';
+
+    // localApiEndpoint is the address of the kml-server endpoint server
+    public static localApiEndpoint = 'YOUR_LOCAL_API_ENDPOINT_ADDRESS';
+}
+```
+
+ The default ports of the servers are:
+| Server name | Port |
+| ----------- | ---- |
+| [sensor-api](https://github.com/calv00/SmartAgroVisualizationTool/tree/master/sensor-api)  | 3002 |
+| [kml-server](https://github.com/calv00/SmartAgroVisualizationTool/tree/master/kml-server)  | 3003 |
 
 ### Usage
 

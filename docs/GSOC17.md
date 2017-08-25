@@ -3,7 +3,7 @@
 > Project created for **Liquid Galaxy** [organization](https://github.com/LiquidGalaxyLAB).
 
 Smart Agro Visualization Tool has been developed through two repositories:
-- [SAVT-Daashboard](https://github.com/calv00/SAVT-Dashboard)
+- [SAVT-Dashboard](https://github.com/calv00/SAVT-Dashboard)
 - [SmartAgroVisualizationTool](https://github.com/calv00/SmartAgroVisualizationTool)
 
 With the next list of commits made in GSOC development stage:
