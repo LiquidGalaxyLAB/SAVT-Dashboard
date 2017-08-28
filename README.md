@@ -29,10 +29,8 @@ export class appConfig {
 ```
 
  The default ports of the servers are:
-| Server name | Port |
-| ----------- | ---- |
-| [sensor-api](https://github.com/calv00/SmartAgroVisualizationTool/tree/master/sensor-api)  | 3002 |
-| [kml-server](https://github.com/calv00/SmartAgroVisualizationTool/tree/master/kml-server)  | 3003 |
+- [sensor-api](https://github.com/calv00/SmartAgroVisualizationTool/tree/master/sensor-api) : 3002
+- [kml-server](https://github.com/calv00/SmartAgroVisualizationTool/tree/master/kml-server) : 3003
 
 ### Usage
 
@@ -68,7 +66,6 @@ This app is configured to run on port 3001. To change the port, the file [bs-con
 ## References
 
 SAVT-Dashboard has been created thanks to the code of the projects:
-- **navijo**'s [FlOYBD](https://github.com/navijo/FlOYBD)
 - **zurfyx**'s [memories](https://github.com/zurfyx/memories)
 
 Readme based on **wearehive**'s [project-guidelines](https://github.com/wearehive/project-guidelines)
